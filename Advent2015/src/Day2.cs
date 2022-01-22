@@ -12,7 +12,7 @@ public class Day2 : DayOfAdvent<Day2>, IDayOfAdvent
 
     internal int WrappingArea()
     {
-      var areas = new[] { l*w, l*h, h*w};
+      var areas = new[] { l * w, l * h, h * w };
       var min = areas.Min();
 
       return areas.Sum() * 2 + min;

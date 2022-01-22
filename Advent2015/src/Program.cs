@@ -1,3 +1,4 @@
 ﻿using Advent2015;
 
-Day1.Run();
+// Day1.Run;
+Day2.Run();

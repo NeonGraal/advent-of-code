@@ -17,8 +17,8 @@ public class DayOfAdvent<T>
     var day1 = new T();
     day1.LoadInput();
 
-    Console.Write($"{day1.DayName}");
-    Console.Write($" - Part 1: {day1.Part1Result()}");
-    Console.WriteLine($" - Part 2: {day1.Part2Result()}");
+    Console.Write($"{day1.DayName} ");
+    Console.Write($"- Part 1: {day1.Part1Result()} ");
+    Console.WriteLine($"- Part 2: {day1.Part2Result()}");
   }
 }

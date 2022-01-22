@@ -16,5 +16,4 @@ public class $safeitemname$ : DayOfAdvent<$safeitemname$>, IDayOfAdvent
 
   public string Part2Result() =>
     $"{Part2()}";
-  }
 }

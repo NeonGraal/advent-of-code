@@ -5,6 +5,9 @@ public class DayOfAdvent<T>
 {
   protected string _input = "";
 
+  protected string[] Lines() =>
+    _input.Split(Environment.NewLine).ToArray();
+
   public string DayName { get; } = typeof(T).Name;
 
   public void LoadInput() =>
@@ -12,6 +15,7 @@ public class DayOfAdvent<T>
 
   public void SetInput(string input) =>
     _input = input;
+
   internal static void Run()
   {
     var day1 = new T();

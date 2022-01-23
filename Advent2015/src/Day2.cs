@@ -28,7 +28,7 @@ public class Day2 : DayOfAdvent<Day2>, IDayOfAdvent
   }
 
   Dim[] ParseInput() =>
-    _input.Split(Environment.NewLine).Select(Dim.Parse).ToArray();
+    Lines().Select(Dim.Parse).ToArray();
 
   public int Part1() =>
     ParseInput().Sum(d => d.WrappingArea());

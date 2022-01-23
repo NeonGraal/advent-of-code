@@ -16,15 +16,4 @@ public class Day4Tests
 
     Assert.Equal(expected, result);
   }
-
-  [Theory]
-  [InlineData("", 1)]
-  public void Part2(string input, int expected)
-  {
-    day.SetInput(input);
-
-    var result = day.Part2();
-
-    Assert.Equal(expected, result);
-  }
 }

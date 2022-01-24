@@ -1,10 +1,8 @@
 ﻿namespace Advent2015;
 
-public class Day1 : DayOfAdvent<Day1>, IDayOfAdvent
-{
+public class Day1 : DayOfAdvent<Day1>, IDayOfAdvent {
   static int AdjustFloor(int total, char dir) =>
-    dir switch
-    {
+    dir switch {
       '(' => total + 1,
       ')' => total - 1,
       _ => total
@@ -15,11 +13,9 @@ public class Day1 : DayOfAdvent<Day1>, IDayOfAdvent
   public string Part1Result() =>
     $"{Part1()}";
 
-  public int Part2()
-  {
+  public int Part2() {
     var total = 0;
-    for (var i = 0; i < _input.Length; i++)
-    {
+    for (var i = 0; i < _input.Length; i++) {
       total = AdjustFloor(total, _input[i]);
       if (total < 0)
         return i + 1;

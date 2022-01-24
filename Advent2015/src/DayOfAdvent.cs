@@ -1,8 +1,7 @@
 ﻿namespace Advent2015;
 
 public class DayOfAdvent<T>
-  where T : IDayOfAdvent, new()
-{
+  where T : IDayOfAdvent, new() {
   protected string _input = "";
 
   protected string[] Lines() =>
@@ -19,8 +18,7 @@ public class DayOfAdvent<T>
   public void SetInput(string input) =>
     _input = input;
 
-  internal static void Run()
-  {
+  internal static void Run() {
     var day1 = new T();
     day1.LoadInput();
 

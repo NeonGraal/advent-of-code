@@ -2,8 +2,7 @@ using Xunit;
 
 namespace Advent2015.Test;
 
-public class Day1Tests
-{
+public class Day1Tests {
   readonly Day1 day1 = new();
 
   [Theory]
@@ -16,8 +15,7 @@ public class Day1Tests
   [InlineData("))(", -1)]
   [InlineData(")))", -3)]
   [InlineData(")())())", -3)]
-  public void Part1(string input, int expected)
-  {
+  public void Part1(string input, int expected) {
     day1.SetInput(input);
 
     var floor = day1.Part1();
@@ -28,8 +26,7 @@ public class Day1Tests
   [Theory]
   [InlineData(")", 1)]
   [InlineData("()())", 5)]
-  public void Part2(string input, int expected)
-  {
+  public void Part2(string input, int expected) {
     day1.SetInput(input);
 
     var position = day1.Part2();

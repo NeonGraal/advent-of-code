@@ -13,6 +13,9 @@ public class DayOfAdvent<T>
   public void LoadInput() =>
     _input = File.ReadAllText($@"input/{DayName}.input");
 
+  public void SampleInput(string suffix) =>
+    _input = File.ReadAllText($@"input/{DayName}{suffix}.sample");
+
   public void SetInput(string input) =>
     _input = input;
 

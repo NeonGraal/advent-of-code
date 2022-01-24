@@ -2,7 +2,7 @@
 
 public class Day2 : DayOfAdvent<Day2>, IDayOfAdvent {
   record struct Dim(int l, int w, int h) {
-    static public Dim Parse(string line) {
+    public static Dim Parse(string line) {
       var parts = line.Split('x').Select(int.Parse).ToArray();
       return new Dim(parts[0], parts[1], parts[2]);
     }

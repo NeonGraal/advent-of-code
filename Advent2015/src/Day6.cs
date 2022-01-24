@@ -3,18 +3,23 @@
 public class Day6 : DayOfAdvent<Day6>, IDayOfAdvent {
   public record struct Rect(int Left, int Top, int Right, int Bottom) {
     public IEnumerable<(int x, int y)> Sweep() {
-      for (var x = Left; x <= Right; x++)
-        for (var y = Top; y <= Bottom; y++)
+      for (var x = Left; x <= Right; x++) {
+        for (var y = Top; y <= Bottom; y++) {
           yield return (x, y);
+        }
+      }
     }
   }
 
   public enum Action { On, Off, Toggle };
 
   public record struct Act(Action Action, Rect Rect) {
-    static public Act Parse(string line) {
+    public static Act Parse(string line) {
       var parts = line.Split(' ');
-      if (parts[0] == "turn") parts = parts[1..];
+      if (parts[0] == "turn") {
+        parts = parts[1..];
+      }
+
       var action = Enum.Parse<Action>(parts[0], true);
       var lt = parts[1].Split(',').Select(int.Parse).ToArray();
       var rb = parts[3].Split(',').Select(int.Parse).ToArray();
@@ -36,13 +41,16 @@ public class Day6 : DayOfAdvent<Day6>, IDayOfAdvent {
       _ => throw new NotImplementedException(),
     };
 
-    foreach (var (x, y) in act.Rect.Sweep())
+    foreach (var (x, y) in act.Rect.Sweep()) {
       lights[x][y] = change(lights[x][y]);
+    }
   }
 
   public int Part1() {
-    foreach (var act in Lines().Select(Act.Parse))
+    foreach (var act in Lines().Select(Act.Parse)) {
       Apply1(act);
+    }
+
     return lights.SelectMany(l => l).Count(l => l);
   }
 
@@ -59,13 +67,16 @@ public class Day6 : DayOfAdvent<Day6>, IDayOfAdvent {
       _ => throw new NotImplementedException(),
     };
 
-    foreach (var (x, y) in act.Rect.Sweep())
+    foreach (var (x, y) in act.Rect.Sweep()) {
       brights[x][y] = change(brights[x][y]);
+    }
   }
 
   public int Part2() {
-    foreach (var act in Lines().Select(Act.Parse))
+    foreach (var act in Lines().Select(Act.Parse)) {
       Apply2(act);
+    }
+
     return brights.SelectMany(l => l).Sum(l => l);
   }
   public string Part2Result() =>

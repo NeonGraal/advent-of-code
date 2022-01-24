@@ -17,8 +17,9 @@ public class Day1 : DayOfAdvent<Day1>, IDayOfAdvent {
     var total = 0;
     for (var i = 0; i < _input.Length; i++) {
       total = AdjustFloor(total, _input[i]);
-      if (total < 0)
+      if (total < 0) {
         return i + 1;
+      }
     }
     return -1;
   }

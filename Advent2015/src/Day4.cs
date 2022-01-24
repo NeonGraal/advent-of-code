@@ -9,7 +9,9 @@ public class Day4 : DayOfAdvent<Day4>, IDayOfAdvent {
     for (var i = 1; i < int.MaxValue; i++) {
       var hash = md5.ComputeHash(Encoding.ASCII.GetBytes(_input + i.ToString()));
       var hex = Convert.ToHexString(hash);
-      if (hex.StartsWith(starts)) return i;
+      if (hex.StartsWith(starts)) {
+        return i;
+      }
     }
     return -1;
   }

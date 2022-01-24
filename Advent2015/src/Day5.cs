@@ -17,25 +17,34 @@ public class Day5 : DayOfAdvent<Day5>, IDayOfAdvent {
   static bool IsVowel(char letter) =>
     letter is 'a' or 'e' or 'i' or 'o' or 'u';
 
-  static public bool IsNice1(string input) {
+  public static bool IsNice1(string input) {
     var prev = input[0];
     var vowels = IsVowel(prev) ? 1 : 0;
     var doubled = false;
 
     foreach (var c in input[1..]) {
-      if (c == prev) doubled = true;
-      if (IsVowel(c)) vowels++;
+      if (c == prev) {
+        doubled = true;
+      }
+
+      if (IsVowel(c)) {
+        vowels++;
+      }
+
       if ((prev == 'a' && c == 'b') ||
           (prev == 'c' && c == 'd') ||
           (prev == 'p' && c == 'q') ||
-          (prev == 'x' && c == 'y')) return false;
+          (prev == 'x' && c == 'y')) {
+        return false;
+      }
+
       prev = c;
     }
 
     return doubled && vowels > 2;
   }
 
-  static public bool IsNice2(string input) {
+  public static bool IsNice2(string input) {
     var pair = (input[0], input[1]);
     var pairs = new HashSet<(char, char)>();
     var prev = pair;
@@ -45,10 +54,19 @@ public class Day5 : DayOfAdvent<Day5>, IDayOfAdvent {
 
     foreach (var c in input[2..]) {
       pair = (prev.Item2, c);
-      if (pairs.Contains(pair)) pairDouble = true;
+      if (pairs.Contains(pair)) {
+        pairDouble = true;
+      }
+
       pairs.Add(prev);
-      if (prev.Item1 == c) skipPair = true;
-      if (pairDouble && skipPair) return true;
+      if (prev.Item1 == c) {
+        skipPair = true;
+      }
+
+      if (pairDouble && skipPair) {
+        return true;
+      }
+
       prev = pair;
     }
     return false;

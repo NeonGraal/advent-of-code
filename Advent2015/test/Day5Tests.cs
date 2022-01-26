@@ -1,6 +1,4 @@
-﻿using Xunit;
-
-namespace Advent2015.Test;
+﻿namespace Advent2015.Test;
 public class Day5Tests {
   [Theory]
   [InlineData("ugknbfddgicrmopn", true)]

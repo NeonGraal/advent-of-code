@@ -1,4 +1,4 @@
-using Xunit;
+global using Xunit;
 
 namespace Advent2015.Test;
 

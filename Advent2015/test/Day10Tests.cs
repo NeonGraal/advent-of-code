@@ -1,6 +1,4 @@
-﻿using Xunit;
-
-namespace Advent2015.Test;
+﻿namespace Advent2015.Test;
 public class Day10Tests {
   readonly Day10 day = new();
 

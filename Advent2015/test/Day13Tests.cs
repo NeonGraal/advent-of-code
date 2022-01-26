@@ -1,6 +1,4 @@
-﻿using Xunit;
-
-namespace Advent2015.Test;
+﻿namespace Advent2015.Test;
 public class Day13Tests {
   readonly Day13 day = new();
 
@@ -13,13 +11,12 @@ public class Day13Tests {
     Assert.Equal(330, result);
   }
 
-  [Theory]
-  [InlineData("", 1)]
-  public void Part2(string input, int expected) {
-    day.SetInput(input);
+  [Fact]
+  public void Part2() {
+    day.SampleInput("");
 
     var result = day.Part2();
 
-    Assert.Equal(expected, result);
+    Assert.Equal(286, result);
   }
 }

@@ -1,6 +1,7 @@
 ﻿namespace Advent2015.Test;
-public class Day3Tests {
-  readonly Day3 day = new();
+public class Day3Tests : DayOfAdventTests<Day3>
+{
+  public Day3Tests(ITestOutputHelper output) : base(output) { }
 
   [Theory]
   [InlineData(">", 2)]

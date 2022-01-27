@@ -1,9 +1,11 @@
 global using Xunit;
+global using Xunit.Abstractions;
 
 namespace Advent2015.Test;
 
-public class Day1Tests {
-  readonly Day1 day1 = new();
+public class Day1Tests : DayOfAdventTests<Day1>
+{
+  public Day1Tests(ITestOutputHelper output) : base(output) { }
 
   [Theory]
   [InlineData("(())", 0)]
@@ -16,9 +18,9 @@ public class Day1Tests {
   [InlineData(")))", -3)]
   [InlineData(")())())", -3)]
   public void Part1(string input, int expected) {
-    day1.SetInput(input);
+    day.SetInput(input);
 
-    var floor = day1.Part1();
+    var floor = day.Part1();
 
     Assert.Equal(expected, floor);
   }
@@ -27,9 +29,9 @@ public class Day1Tests {
   [InlineData(")", 1)]
   [InlineData("()())", 5)]
   public void Part2(string input, int expected) {
-    day1.SetInput(input);
+    day.SetInput(input);
 
-    var position = day1.Part2();
+    var position = day.Part2();
 
     Assert.Equal(expected, position);
   }

@@ -1,6 +1,7 @@
 ﻿namespace Advent2015;
 
-public class Day11 : DayOfAdvent<Day11>, IDayOfAdvent {
+public class Day11 : DayOfAdvent<Day11>, IDayOfAdvent
+{
   public string Part1() {
     var result = Increment(_input);
     while (!(Requirement1(result) && Requirement2(result) && Requirement3(result))) {

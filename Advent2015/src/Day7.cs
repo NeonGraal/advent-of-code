@@ -1,6 +1,7 @@
 ﻿namespace Advent2015;
 
-public class Day7 : DayOfAdvent<Day7>, IDayOfAdvent {
+public class Day7 : DayOfAdvent<Day7>, IDayOfAdvent
+{
   public Dictionary<string, Func<ushort>> Wire { get; } = new();
 
   ushort GetWire(string wire) {

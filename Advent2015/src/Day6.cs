@@ -1,7 +1,9 @@
 ﻿namespace Advent2015;
 
-public class Day6 : DayOfAdvent<Day6>, IDayOfAdvent {
-  public record struct Rect(int Left, int Top, int Right, int Bottom) {
+public class Day6 : DayOfAdvent<Day6>, IDayOfAdvent
+{
+  public record struct Rect(int Left, int Top, int Right, int Bottom)
+  {
     public IEnumerable<(int x, int y)> Sweep() {
       for (var x = Left; x <= Right; x++) {
         for (var y = Top; y <= Bottom; y++) {
@@ -13,7 +15,8 @@ public class Day6 : DayOfAdvent<Day6>, IDayOfAdvent {
 
   public enum Action { On, Off, Toggle };
 
-  public record struct Act(Action Action, Rect Rect) {
+  public record struct Act(Action Action, Rect Rect)
+  {
     public static Act Parse(string line) {
       var parts = line.Split(' ');
       if (parts[0] == "turn") {
@@ -47,7 +50,7 @@ public class Day6 : DayOfAdvent<Day6>, IDayOfAdvent {
   }
 
   public int Part1() {
-    foreach (var act in Lines().Select(Act.Parse)) {
+    foreach (var act in Lines(Act.Parse)) {
       Apply1(act);
     }
 
@@ -73,7 +76,7 @@ public class Day6 : DayOfAdvent<Day6>, IDayOfAdvent {
   }
 
   public int Part2() {
-    foreach (var act in Lines().Select(Act.Parse)) {
+    foreach (var act in Lines(Act.Parse)) {
       Apply2(act);
     }
 

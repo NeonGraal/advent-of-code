@@ -1,7 +1,9 @@
 ﻿namespace Advent2015;
 
-public class Day14 : DayOfAdvent<Day14>, IDayOfAdvent {
-  record Reindeer(string Name, int Speed, int Fly, int Rest) {
+public class Day14 : DayOfAdvent<Day14>, IDayOfAdvent
+{
+  record Reindeer(string Name, int Speed, int Fly, int Rest)
+  {
     public static Reindeer Parse(string line) {
       var parts = line.Split(' ');
       var nums = parts.Select(p => int.TryParse(p, out var v) ? v : -1).ToArray();
@@ -28,15 +30,17 @@ public class Day14 : DayOfAdvent<Day14>, IDayOfAdvent {
   }
 
   public int Part1(int duration) =>
-    Lines().Select(Reindeer.Parse).Select(r => r.Distance(duration)).Max();
+    Lines(Reindeer.Parse).Select(r => r.Distance(duration)).Max();
   public string Part1Result() =>
     $"{Part1(2503)}";
 
   public int Part2(int duration) {
-    var reindeer = Lines().Select(Reindeer.Parse).ToArray();
+    var reindeer = Lines(Reindeer.Parse);
 
     for (var i = 1; i <= duration; i++) {
+#pragma warning disable CS8602 // Dereference of a possibly null reference.
       foreach (var l in reindeer.GroupBy(r => r.Distance(i)).MaxBy(g => g.Key)) {
+#pragma warning restore CS8602 // Dereference of a possibly null reference.
         l.Leader();
       }
     }

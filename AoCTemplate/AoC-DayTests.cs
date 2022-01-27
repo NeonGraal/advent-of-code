@@ -1,10 +1,8 @@
-﻿using Xunit;
+﻿namespace $rootnamespace$;
 
-namespace $rootnamespace$;
-
-public class $safeitemname$Tests
+public class $safeitemname$Tests : DayOfAdventTests<$safeitemname$>
 {
-  readonly $safeitemname$ day = new();
+  public $safeitemname$Tests(ITestOutputHelper output) : base(output) { }
 
   [Theory]
   [InlineData("", 0)]
@@ -18,10 +16,9 @@ public class $safeitemname$Tests
   }
 
   [Theory]
-  [InlineData("", 1)]
-  public void Part2(string input, int expected)
+  public void Part2()
   {
-    day.SetInput(input);
+    day.SampleInput("");
 
     var result = day.Part2();
 

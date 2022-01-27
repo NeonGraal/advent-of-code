@@ -3,7 +3,8 @@ using System.Text;
 
 namespace Advent2015;
 
-public class Day4 : DayOfAdvent<Day4>, IDayOfAdvent {
+public class Day4 : DayOfAdvent<Day4>, IDayOfAdvent
+{
   int FindStarting(string starts) {
     var md5 = MD5.Create();
     for (var i = 1; i < int.MaxValue; i++) {

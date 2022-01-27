@@ -1,6 +1,7 @@
 ﻿namespace Advent2015;
 
-public class Day5 : DayOfAdvent<Day5>, IDayOfAdvent {
+public class Day5 : DayOfAdvent<Day5>, IDayOfAdvent
+{
   public int Part1() =>
     Lines().Count(IsNice1);
   public string Part1Result() =>

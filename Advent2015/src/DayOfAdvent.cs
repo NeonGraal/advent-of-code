@@ -1,11 +1,35 @@
 ﻿namespace Advent2015;
 
+public interface IDayOfAdvent
+{
+  IOutput Console { get; set; }
+  string DayName { get; }
+  void LoadInput();
+  string Part1Result();
+  string Part2Result();
+}
+
+public interface IOutput
+{
+  void WriteLine(string message);
+}
+
 public class DayOfAdvent<T>
-  where T : IDayOfAdvent, new() {
+  where T : IDayOfAdvent, new()
+{
+
+  public DayOfAdvent() =>
+    Console = new ConsoleOutput();
+
+  public IOutput Console { get; set; }
+
   protected string _input = "";
 
   protected string[] Lines() =>
     _input.Split(Environment.NewLine).ToArray();
+
+  protected P[] Lines<P>(Func<string, P> parser) =>
+    _input.Split(Environment.NewLine).Select(parser).ToArray();
 
   public string DayName { get; } = typeof(T).Name;
 
@@ -19,11 +43,17 @@ public class DayOfAdvent<T>
     _input = input;
 
   internal static void Run() {
-    var day1 = new T();
-    day1.LoadInput();
+    var day = new T();
+    day.LoadInput();
 
-    Console.Write($"{day1.DayName} ");
-    Console.Write($"- Part 1: {day1.Part1Result()} ");
-    Console.WriteLine($"- Part 2: {day1.Part2Result()}");
+    System.Console.WriteLine($"{day.DayName}");
+    System.Console.WriteLine($"- Part 1: {day.Part1Result()}");
+    System.Console.WriteLine($"- Part 2: {day.Part2Result()}");
+  }
+
+  class ConsoleOutput : IOutput
+  {
+    public void WriteLine(string message) =>
+      System.Console.WriteLine(message);
   }
 }

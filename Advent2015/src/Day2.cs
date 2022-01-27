@@ -1,7 +1,9 @@
 ﻿namespace Advent2015;
 
-public class Day2 : DayOfAdvent<Day2>, IDayOfAdvent {
-  record struct Dim(int l, int w, int h) {
+public class Day2 : DayOfAdvent<Day2>, IDayOfAdvent
+{
+  record struct Dim(int l, int w, int h)
+  {
     public static Dim Parse(string line) {
       var parts = line.Split('x').Select(int.Parse).ToArray();
       return new Dim(parts[0], parts[1], parts[2]);
@@ -23,7 +25,7 @@ public class Day2 : DayOfAdvent<Day2>, IDayOfAdvent {
   }
 
   Dim[] ParseInput() =>
-    Lines().Select(Dim.Parse).ToArray();
+    Lines(Dim.Parse);
 
   public int Part1() =>
     ParseInput().Sum(d => d.WrappingArea());

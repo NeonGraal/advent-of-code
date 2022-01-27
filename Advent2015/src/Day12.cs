@@ -2,7 +2,8 @@
 
 namespace Advent2015;
 
-public class Day12 : DayOfAdvent<Day12>, IDayOfAdvent {
+public class Day12 : DayOfAdvent<Day12>, IDayOfAdvent
+{
   public int Part1() =>
     _input
       .Split('[', ']', '{', '}', ',', ':')

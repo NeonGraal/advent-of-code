@@ -1,6 +1,7 @@
 ﻿namespace Advent2015;
 
-public class Day8 : DayOfAdvent<Day8>, IDayOfAdvent {
+public class Day8 : DayOfAdvent<Day8>, IDayOfAdvent
+{
   int DecodedLength(string line) {
     var len = 0;
     for (var i = 1; i < line.Length - 1; i++) {

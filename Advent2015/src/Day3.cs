@@ -1,7 +1,9 @@
 ﻿namespace Advent2015;
 
-public class Day3 : DayOfAdvent<Day3>, IDayOfAdvent {
-  record struct Pos(long x, long y) {
+public class Day3 : DayOfAdvent<Day3>, IDayOfAdvent
+{
+  record struct Pos(long x, long y)
+  {
     public Pos Step(char c) =>
       c switch {
         '>' => new(x + 1, y),

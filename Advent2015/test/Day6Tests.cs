@@ -1,6 +1,7 @@
 ﻿namespace Advent2015.Test;
-public class Day6Tests {
-  readonly Day6 day = new();
+public class Day6Tests : DayOfAdventTests<Day6>
+{
+  public Day6Tests(ITestOutputHelper output) : base(output) { }
 
   [Theory]
   [InlineData("turn on 0,0 through 999,999", 1000000)]

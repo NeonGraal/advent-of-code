@@ -1,6 +1,7 @@
 ﻿namespace Advent2015;
 
-public class Day13 : DayOfAdvent<Day13>, IDayOfAdvent {
+public class Day13 : DayOfAdvent<Day13>, IDayOfAdvent
+{
   (string, string, int) Parse(string line) {
     var parts = line.Split(' ', '.');
     var change = int.Parse(parts[3]);
@@ -19,7 +20,8 @@ public class Day13 : DayOfAdvent<Day13>, IDayOfAdvent {
   int BothChange(string left, string right) =>
     Change[(left, right)] + Change[(right, left)];
 
-  record struct Seating(string[] Seats, int Total) {
+  record struct Seating(string[] Seats, int Total)
+  {
     public Seating Seat(string guest, Both change) =>
       new Seating(Seats.Append(guest).ToArray(), Total + change(Seats[^1], guest));
     public Seating Close(Both change) {
@@ -29,7 +31,7 @@ public class Day13 : DayOfAdvent<Day13>, IDayOfAdvent {
   }
 
   public int Part1() {
-    Change = Lines().Select(Parse).ToDictionary(t => (t.Item1, t.Item2), t => t.Item3);
+    Change = Lines(Parse).ToDictionary(t => (t.Item1, t.Item2), t => t.Item3);
     Guests = Change.SelectMany(h => new[] { h.Key.Item1, h.Key.Item2 }).ToHashSet();
 
     return BestHappiness();
@@ -65,7 +67,7 @@ public class Day13 : DayOfAdvent<Day13>, IDayOfAdvent {
     $"{Part1()}";
 
   public int Part2() {
-    Change = Lines().Select(Parse).ToDictionary(t => (t.Item1, t.Item2), t => t.Item3);
+    Change = Lines(Parse).ToDictionary(t => (t.Item1, t.Item2), t => t.Item3);
     Guests = Change.SelectMany(h => new[] { h.Key.Item1, h.Key.Item2 }).ToHashSet();
 
     foreach (var g in Guests) {

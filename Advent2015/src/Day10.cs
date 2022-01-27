@@ -1,6 +1,7 @@
 ﻿namespace Advent2015;
 
-public class Day10 : DayOfAdvent<Day10>, IDayOfAdvent {
+public class Day10 : DayOfAdvent<Day10>, IDayOfAdvent
+{
   public int Part1(int rounds) {
     var seq = _input.ToCharArray();
     var curr = ' ';

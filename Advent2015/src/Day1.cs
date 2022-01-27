@@ -1,6 +1,7 @@
 ﻿namespace Advent2015;
 
-public class Day1 : DayOfAdvent<Day1>, IDayOfAdvent {
+public class Day1 : DayOfAdvent<Day1>, IDayOfAdvent
+{
   static int AdjustFloor(int total, char dir) =>
     dir switch {
       '(' => total + 1,

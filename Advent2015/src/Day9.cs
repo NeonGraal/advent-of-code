@@ -1,6 +1,7 @@
 ﻿namespace Advent2015;
 
-public class Day9 : DayOfAdvent<Day9>, IDayOfAdvent {
+public class Day9 : DayOfAdvent<Day9>, IDayOfAdvent
+{
   readonly Dictionary<string, int> dists = new();
   readonly HashSet<string> locs = new();
 

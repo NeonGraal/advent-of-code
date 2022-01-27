@@ -1,5 +1,6 @@
 ﻿namespace Advent2015.Test;
-public class Day5Tests {
+public class Day5Tests
+{
   [Theory]
   [InlineData("ugknbfddgicrmopn", true)]
   [InlineData("aaa", true)]

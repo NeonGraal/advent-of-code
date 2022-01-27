@@ -1,6 +1,7 @@
 ﻿namespace Advent2015.Test;
-public class Day9Tests {
-  readonly Day9 day = new();
+public class Day9Tests : DayOfAdventTests<Day9>
+{
+  public Day9Tests(ITestOutputHelper output) : base(output) { }
 
   [Fact]
   public void Part1() {

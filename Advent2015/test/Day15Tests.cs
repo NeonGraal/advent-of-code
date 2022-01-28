@@ -1,6 +1,4 @@
-﻿using System.Linq;
-
-namespace Advent2015.Test;
+﻿namespace Advent2015.Test;
 public class Day15Tests : DayOfAdventTests<Day15>
 {
   public Day15Tests(ITestOutputHelper output) : base(output) { }
@@ -20,6 +18,6 @@ public class Day15Tests : DayOfAdventTests<Day15>
 
     var result = day.Part2();
 
-    Assert.Equal(0, result);
+    Assert.Equal(57600000, result);
   }
 }

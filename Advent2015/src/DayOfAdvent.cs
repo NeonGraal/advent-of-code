@@ -9,11 +9,6 @@ public interface IDayOfAdvent
   string Part2Result();
 }
 
-public interface IOutput
-{
-  void WriteLine(string message);
-}
-
 public class DayOfAdvent<T>
   where T : IDayOfAdvent, new()
 {

@@ -1,4 +1,4 @@
-﻿namespace $rootnamespace$;
+﻿namespace $safeprojectname$;
 
 public class $safeitemname$ : DayOfAdvent<$safeitemname$>, IDayOfAdvent
 {
@@ -13,7 +13,6 @@ public class $safeitemname$ : DayOfAdvent<$safeitemname$>, IDayOfAdvent
   {
     throw new NotImplementedException();
   }
-
   public string Part2Result() =>
     $"{Part2()}";
 }

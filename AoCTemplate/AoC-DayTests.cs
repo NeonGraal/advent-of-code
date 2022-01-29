@@ -1,4 +1,4 @@
-﻿namespace $rootnamespace$;
+﻿namespace $safeprojectname$.Test;
 
 public class $safeitemname$Tests : DayOfAdventTests<$safeitemname$>
 {
@@ -15,13 +15,13 @@ public class $safeitemname$Tests : DayOfAdventTests<$safeitemname$>
     Assert.Equal(expected, result);
   }
 
-  [Theory]
+  [Fact]
   public void Part2()
   {
     day.SampleInput("");
 
     var result = day.Part2();
 
-    Assert.Equal(expected, result);
+    Assert.Equal(0, result);
   }
 }

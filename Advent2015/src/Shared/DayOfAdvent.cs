@@ -21,7 +21,7 @@ public class DayOfAdvent<T>
   protected string _input = "";
 
   protected string[] Lines() =>
-    _input.Split(Environment.NewLine).ToArray();
+    _input.Split(Environment.NewLine);
 
   protected P[] Lines<P>(Func<string, P> parser) =>
     _input.Split(Environment.NewLine).Select(parser).ToArray();

@@ -7,7 +7,7 @@ public class Day12 : DayOfAdvent<Day12>, IDayOfAdvent
   public int Part1() =>
     _input
       .Split('[', ']', '{', '}', ',', ':')
-      .Select(x => int.TryParse(x, out var v) ? v : 0)
+      .ToInts(0)
       .Sum();
   public string Part1Result() =>
     $"{Part1()}";

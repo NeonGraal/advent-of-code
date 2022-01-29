@@ -17,4 +17,7 @@ public static class DayExtensions
       }
       return t;
     });
+
+  public static int[] ToInts(this string[] parts, int def) =>
+    parts.Select(p => int.TryParse(p, out var v) ? v : def).ToArray();
 }

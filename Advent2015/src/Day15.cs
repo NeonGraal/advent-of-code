@@ -22,7 +22,7 @@ public class Day15 : DayOfAdvent<Day15>, IDayOfAdvent
 
     public static Ingredient Parse(string line) {
       var parts = line.Split(new[] { ' ', ',', ':' }, StringSplitOptions.RemoveEmptyEntries);
-      var nums = parts.Select(p => int.TryParse(p, out var num) ? num : 0).ToArray();
+      var nums = parts.ToInts(0);
       var properties = new MapInt {
         ["Cap"] = nums[2],
         ["Dur"] = nums[4],

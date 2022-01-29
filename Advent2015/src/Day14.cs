@@ -6,7 +6,7 @@ public class Day14 : DayOfAdvent<Day14>, IDayOfAdvent
   {
     public static Reindeer Parse(string line) {
       var parts = line.Split(' ');
-      var nums = parts.Select(p => int.TryParse(p, out var v) ? v : -1).ToArray();
+      var nums = parts.ToInts(-1);
 
       return new(parts[0], nums[3], nums[6], nums[13]);
     }

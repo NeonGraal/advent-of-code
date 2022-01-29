@@ -1,10 +1,5 @@
 ﻿namespace Advent2015;
 
-public interface IOutput
-{
-  void WriteLine(string message);
-}
-
 public static class DayExtensions
 {
   public static string Show<T>(this IEnumerable<T> list) =>
@@ -22,12 +17,4 @@ public static class DayExtensions
       }
       return t;
     });
-}
-
-public interface IMap<T> : IDictionary<string, T> { }
-
-public class Map<T> : Dictionary<string, T>, IMap<T>
-{
-  public Map() { }
-  public Map(IDictionary<string, T> dictionary) : base(dictionary) { }
 }

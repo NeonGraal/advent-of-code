@@ -1,18 +1,5 @@
 ﻿namespace Advent2015;
 
-public interface IMapInt : IMap<int>
-{
-  int Total { get; set; }
-}
-
-public class MapInt : Map<int>, IMapInt
-{
-  public int Total { get; set; }
-  public MapInt() => Total = 0;
-  public MapInt(IMapInt mapInt) : base(mapInt) =>
-    Total = mapInt.Total;
-}
-
 public class Day15 : DayOfAdvent<Day15>, IDayOfAdvent
 {
   public record Ingredient(string Name, MapInt Properties)

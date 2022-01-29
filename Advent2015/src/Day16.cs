@@ -29,8 +29,8 @@ public class Day16 : DayOfAdvent<Day16>, IDayOfAdvent
 
   public int Part1() =>
     Lines().Select(Parse)
-    .FirstOrDefault(s => 
-      s.Map.All(k => 
+    .FirstOrDefault(s =>
+      s.Map.All(k =>
         Readings1[k.Key] == k.Value)
     ).Id;
   public string Part1Result() =>
@@ -50,8 +50,8 @@ public class Day16 : DayOfAdvent<Day16>, IDayOfAdvent
   };
   public int Part2() =>
     Lines().Select(Parse)
-    .FirstOrDefault(s => 
-      s.Map.All(k => 
+    .FirstOrDefault(s =>
+      s.Map.All(k =>
         Readings2[k.Key](k.Value))
     ).Id;
 

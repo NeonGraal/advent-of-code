@@ -20,4 +20,7 @@ public static class DayExtensions
 
   public static int[] ToInts(this string[] parts, int def) =>
     parts.Select(p => int.TryParse(p, out var v) ? v : def).ToArray();
+
+  public static Map<R> ToMap<T, R>(this IEnumerable<T> list, Func<T, string> key, Func<T, R> value) =>
+    new(list.ToDictionary(key, value));
 }

@@ -61,7 +61,7 @@ public class Day17 : DayOfAdvent<Day17>, IDayOfAdvent
     $"{Part1(150)}";
 
   public int Part2(int litres) =>
-    Possibles(litres).GroupBy(s => s.Containers.Length).MinBy(g => g.Key).Count();
+    Possibles(litres).GroupBy(s => s.Containers.Length).MinBy(g => g.Key)?.Count() ?? 0;
 
   public string Part2Result() =>
     $"{Part2(150)}";

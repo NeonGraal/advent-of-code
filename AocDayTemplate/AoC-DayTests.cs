@@ -1,8 +1,8 @@
-﻿namespace $rootnamespace$;
+﻿namespace $rootnamespace$.Test;
 
-public class $safeitemname$Tests : DayOfAdventTests<$safeitemname$>
+public class $safeitemname$ : DayOfAdventTests<$fileinputname$>
 {
-  public $safeitemname$Tests(ITestOutputHelper output) : base(output) { }
+  public $safeitemname$(ITestOutputHelper output) : base(output) { }
 
   [Theory]
   [InlineData("", 0)]
@@ -15,9 +15,10 @@ public class $safeitemname$Tests : DayOfAdventTests<$safeitemname$>
     Assert.Equal(expected, result);
   }
 
-  [Theory]
+  [Fact]
   public void Part2()
   {
+    var expected = 0;
     day.SampleInput("");
 
     var result = day.Part2();

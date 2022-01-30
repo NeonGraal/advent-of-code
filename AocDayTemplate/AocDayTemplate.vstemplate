@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<VSTemplate Version="3.0.0" Type="Item" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" xmlns:sdk="http://schemas.microsoft.com/developer/vstemplate-sdkextension/2010">
+  <TemplateData>
+    <Name>AoC Day template</Name>
+    <Description>AoC Day class and tests</Description>
+    <Icon>AocDayTemplate.ico</Icon>
+    <TemplateID>ba9d0d07-7c22-43ad-be35-39919d38bbda</TemplateID>
+    <ProjectType>CSharp</ProjectType>
+    <RequiredFrameworkVersion>2.0</RequiredFrameworkVersion>
+    <NumberOfParentCategoriesToRollUp>1</NumberOfParentCategoriesToRollUp>
+    <DefaultName>Day</DefaultName>
+  </TemplateData>
+  <TemplateContent>
+	  <ProjectItem TargetFileName="$fileinputname$.cs" ReplaceParameters="true">AoC-Day.cs</ProjectItem>
+	  <ProjectItem TargetFileName="$fileinputname$Tests.cs" ReplaceParameters="true">AoC-DayTests.cs</ProjectItem>
+  </TemplateContent>
+</VSTemplate>

@@ -9,11 +9,11 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectTypeGuids>{82b43b9b-a64c-4715-b499-d71e9ca2bd60};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <ProjectGuid>{129589BE-1C1C-4830-A1B9-762A0925033E}</ProjectGuid>
+    <ProjectGuid>{FC9C0495-0E6C-439C-856E-010EE8439E7E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AoCTemplate</RootNamespace>
-    <AssemblyName>AoCTemplate</AssemblyName>
+    <RootNamespace>AocDayTemplate</RootNamespace>
+    <AssemblyName>AocDayTemplate</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <GeneratePkgDefFile>false</GeneratePkgDefFile>
@@ -22,7 +22,7 @@
     <IncludeDebugSymbolsInLocalVSIXDeployment>false</IncludeDebugSymbolsInLocalVSIXDeployment>
     <CreateVsixContainer>false</CreateVsixContainer>
     <DeployExtension>false</DeployExtension>
-    <DeployVSTemplates>false</DeployVSTemplates>
+    <DeployVSTemplates>true</DeployVSTemplates>
     <CopyVsixManifestToOutput>false</CopyVsixManifestToOutput>
     <CopyBuildOutputToOutputDirectory>false</CopyBuildOutputToOutputDirectory>
     <CopyOutputSymbolsToOutputDirectory>false</CopyOutputSymbolsToOutputDirectory>
@@ -54,11 +54,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="AoC-Day.cs" />
     <None Include="AoC-DayTests.cs" />
-    <Content Include="ReadMe.md" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="AoC-Day.cs" />
+    <None Include="AocDayTemplate.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <VSTemplate Include="AocDayTemplate.vstemplate" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />

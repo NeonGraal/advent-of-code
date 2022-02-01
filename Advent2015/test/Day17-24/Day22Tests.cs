@@ -58,7 +58,7 @@ public class Day22Tests : DayOfAdventTests<Day22>
     Assert.Equal(229, game.Spent);
     Assert.False(game.GameOver);
 
-    game.PlayTurns();
+    game.PlayTurns(0);
     Assert.Equal(2, game.PlayerHp);
     Assert.Equal(3, game.Recharge);
     Assert.Equal(223, game.Mana);
@@ -70,7 +70,7 @@ public class Day22Tests : DayOfAdventTests<Day22>
     Assert.Equal(342, game.Spent);
     Assert.False(game.GameOver);
 
-    game.PlayTurns();
+    game.PlayTurns(0);
     Assert.Equal(1, game.PlayerHp);
     Assert.Equal(1, game.Recharge);
     Assert.Equal(312, game.Mana);
@@ -85,7 +85,7 @@ public class Day22Tests : DayOfAdventTests<Day22>
     Assert.Equal(415, game.Spent);
     Assert.False(game.GameOver);
 
-    game.PlayTurns();
+    game.PlayTurns(0);
     Assert.Equal(0, game.Recharge);
     Assert.Equal(340, game.Mana);
     Assert.Equal(2, game.PlayerHp);
@@ -99,7 +99,7 @@ public class Day22Tests : DayOfAdventTests<Day22>
     Assert.Equal(588, game.Spent);
     Assert.False(game.GameOver);
 
-    game.PlayTurns();
+    game.PlayTurns(0);
     Assert.Equal(1, game.PlayerHp);
     Assert.Equal(0, game.Shield);
     Assert.Equal(0, game.Armor);
@@ -113,7 +113,7 @@ public class Day22Tests : DayOfAdventTests<Day22>
     Assert.Equal(641, game.Spent);
     Assert.False(game.GameOver);
 
-    game.PlayTurns();
+    game.PlayTurns(0);
     Assert.Equal(3, game.Poison);
     Assert.Equal(-1, game.BossHp);
 

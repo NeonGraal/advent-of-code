@@ -2,35 +2,18 @@
 
 public class Day24 : DayOfAdvent<Day24>, IDayOfAdvent
 {
-  record struct Groups(int[] group1, int[] group2, int sum1, int sum2)
-  {
-    public IEnumerable<Groups> Add(int package, int weight) {
-      if (sum1 + package <= weight) {
-        yield return new Groups(group1.Append(package).ToArray(), group2, sum1 + package, sum2);
-      }
-      if (sum2 + package <= weight) {
-        yield return new Groups(group1, group2.Append(package).ToArray(), sum1, sum2 + package);
-      }
-    }
-
-    public bool Contains(int package) =>
-      group1.Contains(package) || group2.Contains(package);
-
-    public bool Full(int weight) =>
-      sum1 == weight && sum2 == weight && group1.Length <= group2.Length;
-  }
-
-  Groups[] Balance(int[] packages, int groups) {
+  IEnumerable<int[]> Balance(int[] packages, int groups) {
     var weight = packages.Sum() / groups;
-    var result = new Groups(Array.Empty<int>(), Array.Empty<int>(), 0, 0);
+    var possibles = new List<int[]> { Array.Empty<int>() };
 
     foreach (var p in packages.OrderByDescending(p => p)) {
-      if (result.sum1 + p <= weight && result.sum2 + p <= weight) {
-        result = result.Add(p, weight).First();
+      foreach (var g in possibles.ToArray()) {
+        var sum = g.Sum() + p;
+        if (sum > weight) { continue; }
+        var next = g.Append(p).ToArray();
+        if (sum == weight) { yield return next; } else { possibles.Add(next); }
       }
     }
-
-    return new[] { result };
   }
 
   public long Part1() {
@@ -38,7 +21,9 @@ public class Day24 : DayOfAdvent<Day24>, IDayOfAdvent
 
     var groups = Balance(packages, 3);
 
-    return groups.Select(g => g.group1.Aggregate(1L, (t, i) => t * i)).Min();
+    var smallest = groups.GroupBy(g => g.Length).MinBy(g => g.Key)?.ToArray() ?? Array.Empty<int[]>();
+
+    return smallest.Select(g => g.Aggregate(1L, (t, i) => t * i)).Min();
   }
   public string Part1Result() =>
     $"{Part1()}";
@@ -48,7 +33,9 @@ public class Day24 : DayOfAdvent<Day24>, IDayOfAdvent
 
     var groups = Balance(packages, 4);
 
-    return groups.Select(g => g.group1.Aggregate(1L, (t, i) => t * i)).Min();
+    var smallest = groups.GroupBy(g => g.Length).MinBy(g => g.Key)?.ToArray() ?? Array.Empty<int[]>();
+
+    return smallest.Select(g => g.Aggregate(1L, (t, i) => t * i)).Min();
   }
 
   // 349248535 too high

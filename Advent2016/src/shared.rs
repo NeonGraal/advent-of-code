@@ -11,20 +11,10 @@ fn input_path(prefix: &str, suffix: &str) -> PathBuf {
 // Returns an Iterator to the Reader of the lines of the file.
 pub fn input_lines(prefix: &str, suffix: &str) -> Vec<String> {
     let file = File::open(input_path(prefix, suffix));
-    let lines = match file {
-        Ok(f) => io::BufReader::new(f).lines(),
-        Err(error) => panic!("Problem reading the lines of {}{}: {:?}", prefix, suffix, error),
-    };
-    lines.map(|l| match l {
-        Ok(s) => s,
-        Err(error) => panic!("Problem reading the lines of day02{}: {:?}", suffix, error),
-    }).collect()
+    let lines = io::BufReader::new(file.unwrap()).lines();
+    lines.map(|l| l.unwrap()).collect()
 }
 
 pub fn input_string(prefix: &str, suffix: &str) -> String {
-    let s = read_to_string(input_path(prefix, suffix));
-    match s {
-        Ok(s) => return s,
-        Err(error) => panic!("Problem reading the whole file {}{}: {:?}", prefix, suffix, error),
-    };
+    read_to_string(input_path(prefix, suffix)).unwrap()
 }

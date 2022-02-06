@@ -8,14 +8,23 @@ fn input_path(prefix: &str, suffix: &str) -> PathBuf {
     PathBuf::from("input").join(prefix.to_owned() + suffix)
 }
 
-// The output is wrapped in a Result to allow matching on errors
 // Returns an Iterator to the Reader of the lines of the file.
-#[allow(dead_code)]
-pub fn input_lines(prefix: &str, suffix: &str) -> io::Result<io::Lines<io::BufReader<File>>> {
-    let file = File::open(input_path(prefix, suffix))?;
-    Ok(io::BufReader::new(file).lines())
+pub fn input_lines(prefix: &str, suffix: &str) -> Vec<String> {
+    let file = File::open(input_path(prefix, suffix));
+    let lines = match file {
+        Ok(f) => io::BufReader::new(f).lines(),
+        Err(error) => panic!("Problem reading the lines of {}{}: {:?}", prefix, suffix, error),
+    };
+    lines.map(|l| match l {
+        Ok(s) => s,
+        Err(error) => panic!("Problem reading the lines of day02{}: {:?}", suffix, error),
+    }).collect()
 }
 
-pub fn input_string(prefix: &str, suffix: &str) -> io::Result<String> {
-    read_to_string(input_path(prefix, suffix))
+pub fn input_string(prefix: &str, suffix: &str) -> String {
+    let s = read_to_string(input_path(prefix, suffix));
+    match s {
+        Ok(s) => return s,
+        Err(error) => panic!("Problem reading the whole file {}{}: {:?}", prefix, suffix, error),
+    };
 }

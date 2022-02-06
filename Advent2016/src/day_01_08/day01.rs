@@ -6,10 +6,6 @@ use crate::shared::{input_string, pt::Pt};
 
 pub fn run(suffix: &str) {
     let s = input_string("day01", suffix);
-    let s = match s {
-        Ok(s) => s,
-        Err(error) => panic!("Problem opening the file: {:?}", error),
-    };
 
     let result = part1(&s);
     println!("Part1 Distance: {}", result);
@@ -23,7 +19,7 @@ fn part1(s: &str) -> i32 {
 
     let mut pos = Pos::default();
 
-    println!("Start: {}", pos);
+    println!("Day 01 Start: {}", pos);
 
     for turn in turns {
         pos = match turn {
@@ -32,7 +28,7 @@ fn part1(s: &str) -> i32 {
         };
     }
 
-    println!("End: {}", pos);
+    println!("       End: {}", pos);
 
     pos.curr.len()
 }
@@ -44,7 +40,7 @@ fn part2(s: &str) -> i32 {
     let mut result = Pt::default();
     let mut points = HashSet::new();
 
-    println!("Start: {}", pos);
+    println!("Day 01 Start: {}", pos);
 
     'turns: for turn in turns {
         let w = match turn {
@@ -62,7 +58,7 @@ fn part2(s: &str) -> i32 {
         }
     }
 
-    println!("End: {} - {}", pos, result);
+    println!("       End: {} - {}", pos, result);
 
     result.len()
 }

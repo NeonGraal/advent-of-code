@@ -11,6 +11,7 @@ fn main() {
     /*/
     day_01_08::day01::run(".input");
     day_01_08::day02::run(".input");
-    // */
     day_01_08::day03::run(".input");
+    // */
+    day_01_08::day04::run(".input");
 }

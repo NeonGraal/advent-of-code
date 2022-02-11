@@ -5,14 +5,16 @@ use crate::shared::{input_lines, input_string};
 const DAY_NAME: &str  = "day??";
 
 pub fn run(suffix: &str) {
+    println!("** Day ??");
+
     let s = input_string(DAY_NAME, suffix);
     let lines = input_lines(DAY_NAME, suffix);
 
     let result = part1(&s);
-    println!("Part1: {}", result);
+    println!("- Part1: {}", result);
 
     let result = part2(&lines);
-    println!("Part2: {}", result);
+    println!("- Part2: {}", result);
 }
 
 fn part1(lines: &String) -> String {

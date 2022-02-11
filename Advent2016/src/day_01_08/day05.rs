@@ -1,3 +1,5 @@
+use std::time::{Duration, Instant};
+
 use crate::shared::input_string;
 
 use md5;
@@ -5,16 +7,24 @@ use md5;
 const DAY_NAME: &str = "day05";
 
 pub fn run(suffix: &str) {
+    println!("** Day 5");
+
     let s = input_string(DAY_NAME, suffix);
 
     let result = part1(&s);
-    println!("Part1: {}", result);
+    println!("- Part1: {}", result);
 
     let result = part2(&s);
-    println!("Part2: {}", result);
+    println!("- Part2: {}", result);
 }
 
 fn hashes(salt: &str) -> impl Iterator<Item = (u8, u8)> + '_ {
+    let mut start = Instant::now();
+    let second = Duration::from_millis(100);
+    let minute = Duration::from_secs(5);
+    let mut secs = Instant::now();
+    let mut mins = Instant::now();
+
     let mut i = 0;
 
     let collector = std::iter::from_fn(move || {
@@ -22,13 +32,15 @@ fn hashes(salt: &str) -> impl Iterator<Item = (u8, u8)> + '_ {
 
         while result[0] != 0 || result[1] != 0 || result[2] > 15 {
             let data = format!("{}{}", salt, i);
+            i = i + 1;
             let digest = md5::compute(data.to_string());
             result = <[u8; 16]>::from(digest);
-            i = i + 1;
-            if i % 20000 == 0 {
+            if secs.elapsed() > second {
+                secs = Instant::now();
                 print!(".");
-                if i % 1000000 == 0 {
-                    println!(" {}", i);
+                if mins.elapsed() > minute {
+                    mins = Instant::now();
+                    println!(" {}", start.elapsed().as_secs());
                 }
             }
         }
@@ -60,9 +72,12 @@ fn part2(lines: &String) -> String {
             s[i] = format!("{:02x}", digit).chars().next().unwrap();
         }
         if s.iter().all(|&c| c != '_') {
+            println!("");
             return s.iter().collect();
         }
     }
+
+    println!("");
     "".to_string()
 }
 

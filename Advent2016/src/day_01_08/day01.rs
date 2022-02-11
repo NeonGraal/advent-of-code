@@ -5,13 +5,15 @@ use std::{collections::HashSet, fmt};
 use crate::shared::{input_string, pt::Pt};
 
 pub fn run(suffix: &str) {
+    println!("** Day 1");
+
     let s = input_string("day01", suffix);
 
     let result = part1(&s);
-    println!("Part1 Distance: {}", result);
+    println!("- Part1 Distance: {}", result);
 
     let result = part2(&s);
-    println!("Part2 Distance: {}", result);
+    println!("- Part2 Distance: {}", result);
 }
 
 fn part1(s: &str) -> i32 {

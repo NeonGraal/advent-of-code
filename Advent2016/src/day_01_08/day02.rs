@@ -3,13 +3,15 @@ use std::fmt;
 use crate::shared::input_lines;
 
 pub fn run(suffix: &str) {
+    println!("** Day 2");
+
     let lines = input_lines("day02", suffix);
 
     let result = part1(&lines);
-    println!("Part1: {}", result);
+    println!("- Part1: {}", result);
 
     let result = part2(&lines);
-    println!("Part2: {}", result);
+    println!("- Part2: {}", result);
 }
 
 fn part2(lines: &Vec<String>) -> String {

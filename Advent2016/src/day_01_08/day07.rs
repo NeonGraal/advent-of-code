@@ -3,13 +3,15 @@ use crate::shared::input_lines;
 const DAY_NAME: &str = "day07";
 
 pub fn run(suffix: &str) {
+    println!("** Day 7");
+
     let lines = input_lines(DAY_NAME, suffix);
 
     let result = part1(&lines);
-    println!("Part1: {}", result);
+    println!("- Part1: {}", result);
 
     let result = part2(&lines);
-    println!("Part2: {}", result);
+    println!("- Part2: {}", result);
 }
 
 fn nets(line: &String) -> (Vec<String>, Vec<String>) {

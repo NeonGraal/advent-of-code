@@ -19,7 +19,7 @@ pub fn run(suffix: &str) {
 }
 
 fn hashes(salt: &str) -> impl Iterator<Item = (u8, u8)> + '_ {
-    let mut start = Instant::now();
+    let start = Instant::now();
     let second = Duration::from_millis(100);
     let minute = Duration::from_secs(5);
     let mut secs = Instant::now();

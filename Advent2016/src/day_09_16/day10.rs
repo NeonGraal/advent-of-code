@@ -197,3 +197,4 @@ mod tests {
         assert_eq!(result, 2);
     }
 }
+// cspell:words distrib

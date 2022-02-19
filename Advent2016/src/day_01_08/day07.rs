@@ -142,3 +142,4 @@ mod tests {
         assert_eq!(result, 3);
     }
 }
+// cspell:words babs

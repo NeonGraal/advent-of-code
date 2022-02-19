@@ -132,7 +132,7 @@ mod tests {
     }
 
     #[test]
-    fn nineth() {
+    fn ninth() {
         assert_eq!(
             part2(&"(27x12)(20x12)(13x14)(7x10)(1x12)A".to_string()),
             241920
@@ -147,3 +147,4 @@ mod tests {
         );
     }
 }
+// cspell:word ABCY PQRSTX

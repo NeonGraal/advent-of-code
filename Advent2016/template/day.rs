@@ -1,5 +1,3 @@
-use std::fmt;
-
 use crate::shared::{input_lines, input_string};
 
 const DAY_NAME: &str  = "day??";

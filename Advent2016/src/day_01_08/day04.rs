@@ -57,7 +57,11 @@ struct Room {
 impl Room {
     pub fn calc_checksum(&self) -> String {
         let mut b = BTreeMap::<char, i32>::new();
-        for c in self.name.chars().filter(|c| c.is_ascii_lowercase()) {
+        for c in self
+            .name
+            .chars()
+            .filter(|c| c.is_ascii_lowercase())
+        {
             if b.contains_key(&c) {
                 b.insert(c, b[&c] + 1);
             } else {
@@ -67,7 +71,11 @@ impl Room {
 
         let mut counts = Vec::from_iter(b);
         counts.sort_by_key(|&(k, v)| (-v, k));
-        counts.iter().take(5).map(|&(k, v)| k).collect()
+        counts
+            .iter()
+            .take(5)
+            .map(|&(k, v)| k)
+            .collect()
     }
 
     fn sector_if_real(&self) -> i32 {
@@ -86,7 +94,10 @@ impl Room {
     }
 
     pub fn decrypt(&self) -> String {
-        self.name.chars().map(|c| self.decrypt_char(c)).collect()
+        self.name
+            .chars()
+            .map(|c| self.decrypt_char(c))
+            .collect()
     }
 }
 
@@ -142,3 +153,4 @@ mod tests {
         assert_eq!(result, "very encrypted name");
     }
 }
+// cspell:words abxyz qzmt-zixmtkozy-ivhz zimth

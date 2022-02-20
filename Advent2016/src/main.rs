@@ -1,5 +1,5 @@
 #![allow(dead_code)]
-#![allow (unused_variables)]
+#![allow(unused_variables)]
 
 mod shared;
 
@@ -19,6 +19,7 @@ fn main() {
     day_01_08::day08::run(".input");
     day_09_16::day09::run(".input");
     day_09_16::day10::run(".input");
-    // */
     day_09_16::day11::run(".input");
+    // */
+    day_09_16::day12::run(".input");
 }

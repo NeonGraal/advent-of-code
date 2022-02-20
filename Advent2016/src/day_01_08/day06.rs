@@ -23,7 +23,10 @@ fn char_counts(lines: &Vec<String>) -> Vec<HashMap<char, i32>> {
         counts.push(map);
     }
 
-    for (i, c) in lines.iter().flat_map(|l| l.chars().enumerate()) {
+    for (i, c) in lines
+        .iter()
+        .flat_map(|l| l.chars().enumerate())
+    {
         let count = *counts[i].get(&c).unwrap_or(&0);
         let map = &mut counts[i];
         map.insert(c, count + 1);
@@ -37,7 +40,12 @@ fn part1(lines: &Vec<String>) -> String {
 
     let result: String = counts
         .iter()
-        .map(|m| m.iter().max_by_key(|(&k, &v)| v).unwrap().0)
+        .map(|m| {
+            m.iter()
+                .max_by_key(|(&k, &v)| v)
+                .unwrap()
+                .0
+        })
         .collect();
 
     result
@@ -48,7 +56,12 @@ fn part2(lines: &Vec<String>) -> String {
 
     let result: String = counts
         .iter()
-        .map(|m| m.iter().min_by_key(|(&k, &v)| v).unwrap().0)
+        .map(|m| {
+            m.iter()
+                .min_by_key(|(&k, &v)| v)
+                .unwrap()
+                .0
+        })
         .collect();
 
     result

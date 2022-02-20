@@ -63,14 +63,14 @@ mod tests {
 
     #[test]
     fn parse_gen() {
-        let equip = Equip::from_str("Alpha").unwrap();
+        let equip: Equip = "Alpha".parse().unwrap();
 
         assert_eq!(equip, Equip::Gen("Al".to_string()));
     }
 
     #[test]
     fn parse_chip() {
-        let equip = Equip::from_str("Alpha-compatible").unwrap();
+        let equip: Equip = "Alpha-compatible".parse().unwrap();
 
         assert_eq!(equip, Equip::Chip("Al".to_string()));
     }

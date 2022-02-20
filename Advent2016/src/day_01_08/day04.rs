@@ -1,27 +1,22 @@
 use std::{collections::BTreeMap, num::ParseIntError, str::FromStr};
 
-use crate::shared::input_lines;
+use crate::shared::input_parse;
 
 const DAY_NAME: &str = "day04";
 
 pub fn run(suffix: &str) {
     println!("** Day 4");
 
-    let lines = input_lines(DAY_NAME, suffix);
+    let rooms = input_parse(DAY_NAME, suffix);
 
-    let result = part1(&lines);
+    let result = part1(&rooms);
     println!("- Part1: {}", result);
 
-    let result = part2(&lines);
+    let result = part2(&rooms);
     println!("- Part2: {}", result);
 }
 
-fn part1(lines: &Vec<String>) -> i32 {
-    let rooms = lines
-        .into_iter()
-        .filter_map(|r| Room::from_str(&r).ok())
-        .collect::<Vec<Room>>();
-
+fn part1(rooms: &Vec<Room>) -> i32 {
     rooms
         .iter()
         .filter(|r| r.calc_checksum() == r.checksum)
@@ -29,12 +24,7 @@ fn part1(lines: &Vec<String>) -> i32 {
         .sum()
 }
 
-fn part2(lines: &Vec<String>) -> i32 {
-    let rooms = lines
-        .into_iter()
-        .filter_map(|r| Room::from_str(&r).ok())
-        .collect::<Vec<Room>>();
-
+fn part2(rooms: &Vec<Room>) -> i32 {
     let room = rooms
         .iter()
         .filter(|r| r.calc_checksum() == r.checksum)
@@ -120,11 +110,13 @@ impl FromStr for Room {
 
 mod tests {
     #[allow(unused_imports)]
-    use super::{input_lines, part1, part2, FromStr, Room, DAY_NAME};
+    use super::{input_parse, part1, part2, FromStr, Room, DAY_NAME};
 
     #[test]
     fn checksum_1() {
-        let room = Room::from_str("aaaaa-bbb-z-y-x-123[abxyz]").unwrap();
+        let room: Room = "aaaaa-bbb-z-y-x-123[abxyz]"
+            .parse()
+            .unwrap();
 
         println!("{:?}", room);
 
@@ -135,7 +127,7 @@ mod tests {
 
     #[test]
     fn first() {
-        let lines = input_lines(DAY_NAME, ".sample");
+        let lines = input_parse(DAY_NAME, ".sample");
 
         let result = part1(&lines);
 
@@ -144,7 +136,9 @@ mod tests {
 
     #[test]
     fn decrypt_1() {
-        let room = Room::from_str("qzmt-zixmtkozy-ivhz-343[zimth]").unwrap();
+        let room: Room = "qzmt-zixmtkozy-ivhz-343[zimth]"
+            .parse()
+            .unwrap();
 
         println!("{:?}", room);
 

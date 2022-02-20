@@ -1,11 +1,8 @@
-use std::str::FromStr;
-
 use crate::shared::input_lines;
 
 mod equip;
 mod state;
 
-use equip::Equip;
 use state::State;
 
 const DAY_NAME: &str = "day11";
@@ -33,10 +30,10 @@ fn part1(lines: &Vec<String>) -> usize {
 
 fn part2(lines: &Vec<String>) -> usize {
     let mut start = State::new(lines);
-    start.insert(Equip::from_str("elerium").unwrap(), 0);
-    start.insert(Equip::from_str("elerium-compatible").unwrap(), 0);
-    start.insert(Equip::from_str("dilithium").unwrap(), 0);
-    start.insert(Equip::from_str("dilithium-compatible").unwrap(), 0);
+    start.insert("elerium".parse().unwrap(), 0);
+    start.insert("elerium-compatible".parse().unwrap(), 0);
+    start.insert("dilithium".parse().unwrap(), 0);
+    start.insert("dilithium-compatible".parse().unwrap(), 0);
 
     start.show();
 

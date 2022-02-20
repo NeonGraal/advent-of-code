@@ -3,7 +3,6 @@ use std::{
     cmp::Ordering,
     collections::{hash_map::DefaultHasher, BinaryHeap, HashMap},
     hash::{Hash, Hasher},
-    str::FromStr,
 };
 
 #[derive(Debug, Default)]
@@ -82,7 +81,7 @@ impl State {
         while let Some(w) = iter.next() {
             if w == "a" {
                 if let Some(n) = iter.next() {
-                    self.insert(Equip::from_str(n).unwrap(), floor);
+                    self.insert(n.parse().unwrap(), floor);
                 }
             }
         }

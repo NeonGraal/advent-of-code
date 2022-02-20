@@ -1,13 +1,13 @@
 use std::str::FromStr;
 
-use crate::shared::input_lines;
+use crate::shared::input_parse;
 
 const DAY_NAME: &str = "day08";
 
 pub fn run(suffix: &str) {
     println!("** Day 8");
 
-    let lines = input_lines(DAY_NAME, suffix);
+    let lines = input_parse(DAY_NAME, suffix);
 
     let result = part1(&lines);
     println!("- Part1: {}", result);
@@ -57,8 +57,8 @@ impl FromStr for Ins {
 
 type Screen = [[bool; 6]; 50];
 
-fn apply(scrn: &mut Screen, ins: Ins) {
-    match ins {
+fn apply(scrn: &mut Screen, ins: &Ins) {
+    match *ins {
         Ins::Rect { wid, hgt } => {
             for x in 0..wid {
                 for y in 0..hgt {
@@ -101,16 +101,11 @@ fn show(scrn: &Screen) {
     println!("");
 }
 
-fn part1(lines: &Vec<String>) -> usize {
-    let cmds = lines.iter().map(|l| Ins::from_str(l));
-
+fn part1(cmds: &Vec<Ins>) -> usize {
     let mut scrn = [[false; 6]; 50];
 
-    for cmd in cmds {
-        match cmd {
-            Ok(c) => apply(&mut scrn, c),
-            Err(e) => panic!("Invalid command {}", e),
-        }
+    for c in cmds {
+        apply(&mut scrn, c);
     }
     show(&scrn);
     scrn.concat()
@@ -119,17 +114,17 @@ fn part1(lines: &Vec<String>) -> usize {
         .count()
 }
 
-fn part2(lines: &Vec<String>) -> usize {
+fn part2(lines: &Vec<Ins>) -> usize {
     0
 }
 
 mod tests {
     #[allow(unused_imports)]
-    use super::{input_lines, part1, part2, DAY_NAME};
+    use super::{input_parse, part1, part2, DAY_NAME};
 
     #[test]
     fn first() {
-        let lines = input_lines(DAY_NAME, ".sample");
+        let lines = input_parse(DAY_NAME, ".sample");
 
         let result = part1(&lines);
 
@@ -138,7 +133,7 @@ mod tests {
 
     #[test]
     fn second() {
-        let lines = input_lines(DAY_NAME, ".sample");
+        let lines = input_parse(DAY_NAME, ".sample");
 
         let result = part2(&lines);
 

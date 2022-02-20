@@ -17,17 +17,16 @@ pub fn run(suffix: &str) {
 }
 
 fn part1(s: &str) -> i32 {
-    let turns = s.split(", ").map(|s| Turn::from_str(s));
+    let turns = s
+        .split(", ")
+        .map(|s| s.parse::<Turn>().unwrap());
 
     let mut pos = Pos::default();
 
     println!("Day 01 Start: {}", pos);
 
-    for turn in turns {
-        pos = match turn {
-            Ok(t) => pos.turn(t),
-            Err(e) => panic!("Problem with turn {:?}", e),
-        };
+    for t in turns {
+        pos = pos.turn(t);
     }
 
     println!("       End: {}", pos);
@@ -36,7 +35,9 @@ fn part1(s: &str) -> i32 {
 }
 
 fn part2(s: &str) -> i32 {
-    let turns = s.split(", ").map(|s| Turn::from_str(s));
+    let turns = s
+        .split(", ")
+        .map(|s| s.parse::<Turn>().unwrap());
 
     let mut pos = Pos::default();
     let mut result = Pt::default();
@@ -44,11 +45,8 @@ fn part2(s: &str) -> i32 {
 
     println!("Day 01 Start: {}", pos);
 
-    'turns: for turn in turns {
-        let w = match turn {
-            Ok(t) => pos.walk(t),
-            Err(e) => panic!("Problem with turn {:?}", e),
-        };
+    'turns: for t in turns {
+        let w = pos.walk(t);
         pos = w.0;
         for p in w.1 {
             if points.contains(&p) {
@@ -160,7 +158,9 @@ impl Pos {
         let dir = self.dir.turn(turn.turn_left);
         let step = dir.step();
         let curr = self.curr + (step * turn.walk);
-        let points: Vec<Pt> = (1..=turn.walk).map(|i| self.curr + step * i).collect();
+        let points: Vec<Pt> = (1..=turn.walk)
+            .map(|i| self.curr + step * i)
+            .collect();
         (Pos { dir, curr }, points)
     }
 }

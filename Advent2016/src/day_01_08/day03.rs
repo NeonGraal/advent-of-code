@@ -18,7 +18,10 @@ fn part2(lines: &Vec<String>) -> i32 {
     let mut count = 0;
 
     for tri in lines.chunks(3) {
-        let nums: Vec<Vec<i32>> = tri.into_iter().map(|l| make_triangle(&l)).collect();
+        let nums: Vec<Vec<i32>> = tri
+            .into_iter()
+            .map(|l| make_triangle(&l))
+            .collect();
 
         for i in 0..3 {
             if valid_triangle(nums[0][i], nums[1][i], nums[2][i]) {
@@ -33,7 +36,10 @@ fn part2(lines: &Vec<String>) -> i32 {
 fn part1(lines: &Vec<String>) -> i32 {
     let mut count = 0;
 
-    for nums in lines.into_iter().map(|l| make_triangle(&l)) {
+    for nums in lines
+        .into_iter()
+        .map(|l| make_triangle(&l))
+    {
         if valid_triangle(nums[0], nums[1], nums[2]) {
             count += 1;
         }

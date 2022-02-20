@@ -69,7 +69,10 @@ fn part2(lines: &String) -> String {
     for (pos, digit) in hashes(lines) {
         let i = pos as usize;
         if i < 8 && s[i] == '_' {
-            s[i] = format!("{:02x}", digit).chars().next().unwrap();
+            s[i] = format!("{:02x}", digit)
+                .chars()
+                .next()
+                .unwrap();
         }
         if s.iter().all(|&c| c != '_') {
             println!("");

@@ -20,6 +20,7 @@ fn main() {
     day_09_16::day09::run(".input");
     day_09_16::day10::run(".input");
     day_09_16::day11::run(".input");
-    // */
     day_09_16::day12::run(".input");
+    // */
+    day_09_16::day13::run(".input");
 }

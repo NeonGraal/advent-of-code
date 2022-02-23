@@ -17,6 +17,13 @@
       "args": ["--release"],
       "problemMatcher": ["$rustc"],
       "label": "cargo run"
+    },
+    {
+      "type": "cargo",
+      "command": "test",
+      "args": ["--release"],
+      "problemMatcher": ["$rustc"],
+      "label": "cargo test"
     }
   ]
 }

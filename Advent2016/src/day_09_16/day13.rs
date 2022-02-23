@@ -3,22 +3,24 @@ use std::{
     collections::{BinaryHeap, HashSet},
 };
 
+use crate::shared::pt::Pt;
+
 const DAY_NAME: &str = "day13";
 
 pub fn run(suffix: &str) {
     println!("** Day 13");
 
-    let result = part1(1364, Point { x: 31, y: 39 });
+    let result = part1(1364, Pt { x: 31, y: 39 });
     println!("- Part1: {}", result);
 
     let result = part2(1364);
     println!("- Part2: {}", result);
 }
 
-fn part1(seed: usize, end: Point) -> usize {
+fn part1(seed: i32, end: Pt) -> usize {
     let mut acts = BinaryHeap::new();
     let mut visited = HashSet::new();
-    let dest = Point { x: 1, y: 1 };
+    let dest = Pt { x: 1, y: 1 };
     acts.push(Act { dest, steps: 0 });
 
     while let Some(next) = acts.pop() {
@@ -37,10 +39,10 @@ fn part1(seed: usize, end: Point) -> usize {
     0
 }
 
-fn part2(seed: usize) -> usize {
+fn part2(seed: i32) -> usize {
     let mut acts = BinaryHeap::new();
     let mut visited = HashSet::new();
-    let dest = Point { x: 1, y: 1 };
+    let dest = Pt { x: 1, y: 1 };
     acts.push(Act { dest, steps: 0 });
 
     while let Some(next) = acts.pop() {
@@ -56,27 +58,21 @@ fn part2(seed: usize) -> usize {
     visited.len()
 }
 
-#[derive(Debug, PartialEq, PartialOrd, Ord, Eq, Hash, Default, Clone, Copy)]
-struct Point {
-    x: usize,
-    y: usize,
-}
-
-impl Point {
-    fn step(&self, dx: i32, dy: i32) -> Point {
-        let x = (self.x as i32 + dx) as usize;
-        let y = (self.y as i32 + dy) as usize;
-        Point { x, y }
+impl Pt {
+    fn step(&self, dx: i32, dy: i32) -> Pt {
+        let x = self.x as i32 + dx;
+        let y = self.y as i32 + dy;
+        Pt { x, y }
     }
 
-    fn wall(&self) -> usize {
+    fn wall(&self) -> i32 {
         self.x * (3 + self.x + 2 * self.y) + self.y * (1 + self.y)
     }
 }
 
 #[derive(Debug, PartialEq, Eq, Hash, Default)]
 struct Act {
-    dest: Point,
+    dest: Pt,
     steps: usize,
 }
 
@@ -112,7 +108,7 @@ impl Act {
         result
     }
 
-    fn is_wall(&self, seed: usize) -> bool {
+    fn is_wall(&self, seed: i32) -> bool {
         let val = self.dest.wall() + seed;
         val.count_ones() % 2 == 1
     }
@@ -120,11 +116,11 @@ impl Act {
 
 mod tests {
     #[allow(unused_imports)]
-    use super::{part1, part2, Point};
+    use super::{part1, part2, Pt};
 
     #[test]
     fn first() {
-        let result = part1(10, Point { x: 7, y: 4 });
+        let result = part1(10, Pt { x: 7, y: 4 });
 
         assert_eq!(result, 11);
     }

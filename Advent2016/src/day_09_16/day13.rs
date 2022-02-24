@@ -59,12 +59,6 @@ fn part2(seed: i32) -> usize {
 }
 
 impl Pt {
-    fn step(&self, dx: i32, dy: i32) -> Pt {
-        let x = self.x as i32 + dx;
-        let y = self.y as i32 + dy;
-        Pt { x, y }
-    }
-
     fn wall(&self) -> i32 {
         self.x * (3 + self.x + 2 * self.y) + self.y * (1 + self.y)
     }

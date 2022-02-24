@@ -39,4 +39,10 @@ impl Pt {
     pub fn len(self) -> i32 {
         self.x.abs() + self.y.abs()
     }
+
+    pub fn step(&self, dx: i32, dy: i32) -> Pt {
+        let x = self.x as i32 + dx;
+        let y = self.y as i32 + dy;
+        Pt { x, y }
+    }
 }

@@ -26,6 +26,7 @@ fn main() {
     day_09_16::day15::run(".input");
     day_09_16::day16::run(".input");
     day_17_24::day17::run(".input");
-    // */
     day_17_24::day18::run(".input");
+    // */
+    day_17_24::day19::run(".input");
 }

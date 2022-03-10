@@ -25,7 +25,7 @@ pub fn input_parse<E: Debug, T: FromStr<Err = E>>(prefix: &str, suffix: &str) ->
     let file = File::open(input_path(prefix, suffix));
     let lines = io::BufReader::new(file.unwrap()).lines();
     lines
-        .map(|l| l.unwrap().parse::<T>().unwrap())
+        .filter_map(|l| l.unwrap().parse::<T>().ok())
         .collect()
 }
 

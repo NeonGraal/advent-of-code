@@ -31,7 +31,7 @@ fn part1(s: &str) -> i32 {
 
     println!("       End: {}", pos);
 
-    pos.curr.len()
+    pos.curr.steps()
 }
 
 fn part2(s: &str) -> i32 {
@@ -60,7 +60,7 @@ fn part2(s: &str) -> i32 {
 
     println!("       End: {} - {}", pos, result);
 
-    result.len()
+    result.steps()
 }
 
 // 144 is too high

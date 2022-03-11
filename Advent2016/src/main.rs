@@ -30,6 +30,7 @@ fn main() {
     day_17_24::day19::run(".input");
     day_17_24::day20::run(".input");
     day_17_24::day21::run(".input");
-    // */
     day_17_24::day22::run(".input");
+    // */
+    day_17_24::day23::run(".input");
 }

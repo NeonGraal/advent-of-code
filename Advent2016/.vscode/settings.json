@@ -3,6 +3,7 @@
         "cmds",
         "dilithium",
         "elerium",
-        "Hasher"
+        "Hasher",
+        "regs"
     ]
 }

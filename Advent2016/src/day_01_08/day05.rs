@@ -1,6 +1,4 @@
-use std::time::{Duration, Instant};
-
-use crate::shared::input_string;
+use crate::shared::{input_string, timing::Timing};
 
 use md5;
 
@@ -19,11 +17,7 @@ pub fn run(suffix: &str) {
 }
 
 fn hashes(salt: &str) -> impl Iterator<Item = (u8, u8)> + '_ {
-    let start = Instant::now();
-    let second = Duration::from_millis(100);
-    let minute = Duration::from_secs(5);
-    let mut secs = Instant::now();
-    let mut mins = Instant::now();
+    let mut t = Timing::start(100, 5);
 
     let mut i = 0;
 
@@ -35,14 +29,7 @@ fn hashes(salt: &str) -> impl Iterator<Item = (u8, u8)> + '_ {
             i = i + 1;
             let digest = md5::compute(data.to_string());
             result = <[u8; 16]>::from(digest);
-            if secs.elapsed() > second {
-                secs = Instant::now();
-                print!(".");
-                if mins.elapsed() > minute {
-                    mins = Instant::now();
-                    println!(" {}", start.elapsed().as_secs());
-                }
-            }
+            t.check(|| format!("{}", i));
         }
         print!("!");
 

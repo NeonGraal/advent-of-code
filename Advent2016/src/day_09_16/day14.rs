@@ -1,6 +1,6 @@
-use std::{collections::HashMap, fmt, time::{Instant, Duration}};
+use std::{collections::HashMap, fmt};
 
-use crate::shared::input_string;
+use crate::shared::{input_string, timing::Timing};
 
 const DAY_NAME: &str = "day14";
 
@@ -65,11 +65,7 @@ where
     F: 'a,
     F: FnMut(usize) -> Vec<char>,
 {
-    let start = Instant::now();
-    let second = Duration::from_millis(500);
-    let minute = Duration::from_secs(30);
-    let mut secs = Instant::now();
-    let mut mins = Instant::now();
+    let mut t = Timing::start(500, 30);
     
     let mut i = 0_usize;
     let mut cnt = 0_usize;
@@ -80,14 +76,7 @@ where
     }
 
     let collector = std::iter::from_fn(move || loop {
-        if secs.elapsed() > second {
-            secs = Instant::now();
-            print!(".");
-            if mins.elapsed() > minute {
-                mins = Instant::now();
-                println!(" {}s {}/{}", start.elapsed().as_secs(), i, cnt);
-            }
-        }
+        t.check(|| format!("{}/{}", i, cnt));
         let result = hashes.remove(&i).unwrap();
         i = i + 1;
         hashes.insert(i + 999, hash(i + 999));

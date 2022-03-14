@@ -1,4 +1,5 @@
 pub mod pt;
+pub mod timing;
 
 use std::fmt::Debug;
 use std::fs::{read_to_string, File};

@@ -3,6 +3,7 @@
 
 mod shared;
 
+mod day25;
 mod day_01_08;
 mod day_09_16;
 mod day_17_24;
@@ -32,6 +33,7 @@ fn main() {
     day_17_24::day21::run(".input");
     day_17_24::day22::run(".input");
     day_17_24::day23::run(".input");
-    // */
     day_17_24::day24::run(".input");
+    // */
+    day25::run(".input");
 }

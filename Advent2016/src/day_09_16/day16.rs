@@ -58,7 +58,8 @@ impl Dragon {
         data.truncate(len);
 
         while data.len() % 2 == 0 {
-            data = data.chunks(2)
+            data = data
+                .chunks(2)
                 .map(|c| c[0] == c[1])
                 .collect();
         }

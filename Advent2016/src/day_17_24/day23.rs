@@ -1,6 +1,9 @@
 use std::{collections::HashMap, convert::Infallible, fmt, str::FromStr};
 
-use crate::{day_09_16::day12::{Ins, to_reg}, shared::input_parse};
+use crate::{
+    day_09_16::day12::{to_reg, Ins},
+    shared::input_parse,
+};
 
 const DAY_NAME: &str = "day23";
 
@@ -61,8 +64,8 @@ impl fmt::Display for ToggleIns {
         match self {
             ToggleIns::Normal(i) => write!(f, " {}", i),
             ToggleIns::Toggle(i) => write!(f, "!{}", i.toggle()),
-            ToggleIns::NormalTgl(r) => write!(f, " tgl {}", r),
-            ToggleIns::ToggleTgl(r) => write!(f, "!inc {}", r),
+            ToggleIns::NormalTgl(r) => write!(f, " tgl ${}", r),
+            ToggleIns::ToggleTgl(r) => write!(f, "!inc ${}", r),
         }
     }
 }
@@ -74,11 +77,20 @@ impl Ins {
             Ins::Inc(r) => Ins::Dec(r),
             Ins::Dec(r) => Ins::Inc(r),
             Ins::Jnz(a, b) => Ins::Cpy(a, b),
-        }        
+        }
     }
 }
 
 impl ToggleIns {
+    pub fn show(&self, loc: usize) -> String {
+        match self {
+            ToggleIns::Normal(i) => format!(" {}", i.show(loc)),
+            ToggleIns::Toggle(i) => format!("!{}", i.toggle().show(loc)),
+            ToggleIns::NormalTgl(r) => format!(" {}: tgl ${}", loc, r),
+            ToggleIns::ToggleTgl(r) => format!("!{}: tgl ${}", loc, r),
+        }
+    }
+
     fn toggle(self) -> Self {
         match self {
             ToggleIns::Normal(i) => ToggleIns::Toggle(i),
@@ -136,12 +148,12 @@ mod tests {
     fn test_parse() {
         let lines: Vec<ToggleIns> = input_parse(DAY_NAME, ".input");
 
-        for l in &lines {
-            println!("{}", l);
+        for (i, l) in lines.iter().enumerate() {
+            println!("{}", l.show(i));
         }
 
-        for l in &lines {
-            println!("{}", l.toggle());
+        for (i, l) in lines.iter().enumerate() {
+            println!("{}", l.toggle().show(i));
         }
     }
 

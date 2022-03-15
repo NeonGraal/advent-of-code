@@ -101,7 +101,7 @@ impl Node {
 #[derive(Debug, PartialEq, Eq)]
 struct State {
     points: HashMap<Pt, Grid>,
-    visited: HashSet<(Pt, Pt)>, 
+    visited: HashSet<(Pt, Pt)>,
     max_avail: usize,
     goal: Pt,
     empty: Pt,
@@ -203,12 +203,15 @@ impl State {
         self.moves - self.goal.x
     }
 
-    fn try_move(&self, dx: i32, dy: i32) -> Option<State> { 
-
+    fn try_move(&self, dx: i32, dy: i32) -> Option<State> {
         let x = self.empty.x + dx;
         let y = self.empty.y + dy;
         let next = Pt { x, y };
-        let goal = if self.goal == next { self.empty } else { self.goal };
+        let goal = if self.goal == next {
+            self.empty
+        } else {
+            self.goal
+        };
         let visit = (goal, next);
         if next.negative() || next.beyond(&self.end) || self.visited.contains(&visit) {
             return None;

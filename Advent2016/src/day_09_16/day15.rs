@@ -35,7 +35,7 @@ fn part1(disks: &Vec<Disk>) -> usize {
 
 fn part2(disks: &mut Vec<Disk>) -> usize {
     disks.push(Disk {
-        id: disks.len()+1,
+        id: disks.len() + 1,
         num: 11,
         start: 0,
     });

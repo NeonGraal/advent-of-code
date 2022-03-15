@@ -77,7 +77,7 @@ impl fmt::Display for Val {
 
 impl Val {
     fn val(&self, regs: &HashMap<char, i32>) -> i32 {
-        match self { 
+        match self {
             Val::Num(n) => *n,
             Val::Reg(r) => regs[&r],
         }
@@ -113,14 +113,24 @@ impl fmt::Display for Ins {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         match self {
             Ins::Cpy(v, t) => write!(f, "cpy {} {}", v, t),
-            Ins::Inc(r) => write!(f, "inc {}", r),
-            Ins::Dec(r) => write!(f, "dec {}", r),
+            Ins::Inc(r) => write!(f, "inc ${}", r),
+            Ins::Dec(r) => write!(f, "dec ${}", r),
             Ins::Jnz(r, j) => write!(f, "jnz {} {}", r, j),
         }
     }
 }
 
 impl Ins {
+    pub fn show(&self, loc: usize) -> String {
+        match self {
+            Ins::Jnz(r, j) => match j {
+                Val::Num(n) => format!("{}: jnz {} :{}", loc, r, n + loc as i32),
+                Val::Reg(d) => format!("{}: jnz {} {}", loc, r, d),
+            },
+            _ => format!("{}: {}", loc, self),
+        }
+    }
+
     pub fn exec(self, regs: &mut HashMap<char, i32>) -> i32 {
         if let Ins::Jnz(k, j) = self {
             if k.val(regs) != 0 {
@@ -148,8 +158,8 @@ mod tests {
     fn test_parse() {
         let lines: Vec<Ins> = input_parse(DAY_NAME, ".input");
 
-        for l in lines {
-            println!("{}", l);
+        for (i, l) in lines.iter().enumerate() {
+            println!("{}", l.show(i));
         }
     }
 

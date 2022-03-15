@@ -66,7 +66,7 @@ where
     F: FnMut(usize) -> Vec<char>,
 {
     let mut t = Timing::start(500, 30);
-    
+
     let mut i = 0_usize;
     let mut cnt = 0_usize;
     let mut hashes = HashMap::<usize, Vec<char>>::new();

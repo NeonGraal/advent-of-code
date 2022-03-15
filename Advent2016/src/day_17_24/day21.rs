@@ -124,7 +124,7 @@ fn rev_based(input: &str, a: &str) -> String {
     for i in 0..input.len() {
         let result = rot_left(input, i);
         if rot_based(&result, a) == input {
-            return result
+            return result;
         }
     }
     input.to_string()

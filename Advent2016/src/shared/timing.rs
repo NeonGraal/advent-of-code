@@ -1,4 +1,7 @@
-use std::time::{Instant, Duration};
+use std::{
+    io::{stdout, Write},
+    time::{Duration, Instant},
+};
 
 pub struct Timing {
     start: Instant,
@@ -31,6 +34,7 @@ impl Timing {
         if self.dots.elapsed() > self.dot {
             self.dots = Instant::now();
             print!(".");
+            stdout().flush().unwrap();
             if self.lines.elapsed() > self.line {
                 self.lines = Instant::now();
                 println!(" {} {}", self.start.elapsed().as_secs(), detail());

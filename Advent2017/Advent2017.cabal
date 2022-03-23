@@ -6,27 +6,26 @@ cabal-version: 1.12
 
 name:           Advent2017
 version:        0.1.0.0
-description:    Please see the README on GitHub at <https://github.com/neongraal/Advent#readme>
-homepage:       https://github.com/Neongraal/Advent#readme
-bug-reports:    https://github.com/Neongraal/Advent/issues
+description:    Please see the README on GitHub at <https://github.com/neongraal/advent-of-code#readme>
+homepage:       https://github.com/Neongraal/advent-of-code#readme
+bug-reports:    https://github.com/Neongraal/advent-of-code/issues
 author:         NeonGraal
 maintainer:     github@scifi.geek.nz
 copyright:      2022 NeonGraal
 license:        BSD3
-license-file:   LICENSE
 build-type:     Simple
 extra-source-files:
     README.md
     ChangeLog.md
 
 source-repository head
-  type: git
-  location: https://github.com/Neongraal/Advent
+  type: git 
 
 library
   exposed-modules:
       Advent
       Day_01_08.Day_01
+      Day_01_08.Day_02
   other-modules:
       Paths_Advent2017
   hs-source-dirs:
@@ -52,6 +51,7 @@ test-suite Advent2017-test
   main-is: Spec.hs
   other-modules:
       Test_01_08.Day_01
+      Test_01_08.Day_02
       Paths_Advent2017
   hs-source-dirs:
       test

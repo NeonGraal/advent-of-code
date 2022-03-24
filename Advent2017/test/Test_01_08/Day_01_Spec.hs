@@ -1,9 +1,9 @@
-module Test_01_08.Day_01 (day_01_tests) where
+module Test_01_08.Day_01_Spec (spec) where
 
 import AdventTest (runTests)
 import Day_01_08.Day_01 (day_01)
 
-day_01_tests = runTests day_01 p1 p2
+spec = runTests day_01 p1 p2
   where
     p1 t = do
       t "1122" 3

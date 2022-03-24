@@ -8,7 +8,7 @@ runTests ::
   Advent i o ->
   ((i -> o -> SpecWith ()) -> SpecWith ()) ->
   ((i -> o -> SpecWith ()) -> SpecWith ()) ->
-  SpecWith ()
+  Spec
 runTests d p1 p2 =
   let descr i e = "'" ++ (show i) ++ "' -> " ++ (show e)
       test p i e = it (descr i e) $ p d i `shouldBe` e

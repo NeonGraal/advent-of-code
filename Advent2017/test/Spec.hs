@@ -1,8 +1,9 @@
-import Test_01_08.Day_01
-import Test_01_08.Day_02
+{- -# OPTIONS_GHC -F -pgmF hspec-discover #-}
+
+{- -}
+import Test_01_08.Day_02_Spec
 import Test.Hspec
 
 main :: IO ()
-main = hspec $ do
-    day_01_tests
-    day_02_tests
+main = hspec spec
+-- -}

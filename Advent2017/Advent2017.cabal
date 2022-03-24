@@ -52,8 +52,8 @@ test-suite Advent2017-test
   main-is: Spec.hs
   other-modules:
       AdventTest
-      Test_01_08.Day_01
-      Test_01_08.Day_02
+      Test_01_08.Day_01_Spec
+      Test_01_08.Day_02_Spec
       Paths_Advent2017
   hs-source-dirs:
       test

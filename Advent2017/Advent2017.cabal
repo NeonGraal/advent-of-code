@@ -6,9 +6,9 @@ cabal-version: 1.12
 
 name:           Advent2017
 version:        0.1.0.0
-description:    Please see the README on GitHub at <https://github.com/neongraal/advent-of-code#readme>
-homepage:       https://github.com/Neongraal/advent-of-code#readme
-bug-reports:    https://github.com/Neongraal/advent-of-code/issues
+description:    Please see the README on GitHub at <https://github.com/neongraal/Advent#readme>
+homepage:       https://github.com/Neongraal/Advent#readme
+bug-reports:    https://github.com/Neongraal/Advent/issues
 author:         NeonGraal
 maintainer:     github@scifi.geek.nz
 copyright:      2022 NeonGraal
@@ -19,7 +19,8 @@ extra-source-files:
     ChangeLog.md
 
 source-repository head
-  type: git 
+  type: git
+  location: https://github.com/Neongraal/Advent
 
 library
   exposed-modules:
@@ -50,6 +51,7 @@ test-suite Advent2017-test
   type: exitcode-stdio-1.0
   main-is: Spec.hs
   other-modules:
+      AdventTest
       Test_01_08.Day_01
       Test_01_08.Day_02
       Paths_Advent2017

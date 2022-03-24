@@ -13,7 +13,7 @@ run a = do
     putStrLn $ "Advent 2017 - " ++ d
     contents <- readFile $ "input/" ++ d ++ ".input"
     let input = parse a contents
-    putStr $ "  " ++ d ++ " Part1: "
+    putStr $ "  " ++ d ++ " Part 1: "
     print $ part1 a input
-    putStr $ "  " ++ d ++ " Part2: "
+    putStr $ "  " ++ d ++ " Part 2: "
     print $ part2 a input

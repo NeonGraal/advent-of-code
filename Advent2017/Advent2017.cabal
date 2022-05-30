@@ -27,6 +27,7 @@ library
       Advent
       Day_01_08.Day_01
       Day_01_08.Day_02
+      Day_01_08.Day_03
   other-modules:
       Paths_Advent2017
   hs-source-dirs:
@@ -54,6 +55,7 @@ test-suite Advent2017-test
       AdventTest
       Test_01_08.Day_01_Spec
       Test_01_08.Day_02_Spec
+      Test_01_08.Day_03_Spec
       Paths_Advent2017
   hs-source-dirs:
       test

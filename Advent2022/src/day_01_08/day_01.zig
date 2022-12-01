@@ -1,24 +1,39 @@
 const std = @import("std");
 
 pub fn main() !void {
-    // Prints to stderr (it's a shortcut based on `std.io.getStdErr()`)
-    std.debug.print("All your {s} are belong to us.\n", .{"codebase"});
+    const max = try maxGroup("input/day_01.txt");
 
-    // stdout is for the actual output of your application, for example if you
-    // are implementing gzip, then only the compressed bytes should be sent to
-    // stdout, not any debugging messages.
-    const stdout_file = std.io.getStdOut().writer();
-    var bw = std.io.bufferedWriter(stdout_file);
-    const stdout = bw.writer();
+    const stdout = std.io.getStdOut().writer();
+    try stdout.print("Part 1 - {}\n", .{max});
+}
 
-    try stdout.print("Run `zig build test` to run the tests.\n", .{});
+fn maxGroup(name: []const u8) !u64 {
+    var file = try std.fs.cwd().openFile(name, .{});
+    defer file.close();
 
-    try bw.flush(); // don't forget to flush!
+    var buf_reader = std.io.bufferedReader(file.reader());
+    var in_stream = buf_reader.reader();
+
+    var buf: [1024]u8 = undefined;
+
+    var max: u64 = 0;
+    var group: u64 = 0;
+    while (try in_stream.readUntilDelimiterOrEof(&buf, '\n')) |line| {
+        const trimmed = std.mem.trimRight(u8, line, "\r\n");
+        if (trimmed.len == 0) {
+            if (group > max) {
+                max = group;
+            }
+            group = 0;
+        } else {
+            const val: u64 = try std.fmt.parseInt(u64, trimmed, 10);
+            group += val;
+        }
+    }
+    return max;
 }
 
 test "simple test" {
-    var list = std.ArrayList(i32).init(std.testing.allocator);
-    defer list.deinit(); // try commenting this out and see if zig detects the memory leak!
-    try list.append(42);
-    try std.testing.expectEqual(@as(i32, 42), list.pop());
+    const max = try maxGroup("sample/day_01.txt");
+    try std.testing.expectEqual(@intCast(u64, 24000), max);
 }

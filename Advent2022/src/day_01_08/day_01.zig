@@ -12,8 +12,8 @@ pub fn main() !void {
 
 fn readAndSumGroup(r: anytype) !?u64 {
     var group: ?u64 = null;
-    var buf: [1024]u8 = undefined;
 
+    var buf: [1024]u8 = undefined;
     while (try r.readUntilDelimiterOrEof(&buf, '\n')) |line| {
         const trimmed = std.mem.trimRight(u8, line, "\r\n");
         if (trimmed.len == 0) {

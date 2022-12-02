@@ -12,6 +12,7 @@ pub fn build(b: *std.build.Builder) void {
     const mode = b.standardReleaseOptions();
 
     setup_day(b, target, mode, "day_01_08", "01");
+    setup_day(b, target, mode, "day_01_08", "02");
 }
 
 fn setup_day(b: *std.build.Builder, target: std.zig.CrossTarget, mode: std.builtin.Mode, comptime dir: []const u8, comptime day: []const u8) void {

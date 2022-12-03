@@ -45,20 +45,20 @@ fn totalStrategies(name: []const u8) !u64 {
 
 fn scoreGame(opponent: u8, player: u8) u64 {
     const mine = player - 'W';
-    return @intCast(u64, switch(opponent){
-        'A' => ([4]u64{0, 4, 8, 3})[mine],
-        'B' => ([4]u64{0, 1, 5, 9})[mine],
-        'C' => ([4]u64{0, 7, 2, 6})[mine],
+    return @intCast(u64, switch (opponent) {
+        'A' => ([4]u64{ 0, 4, 8, 3 })[mine],
+        'B' => ([4]u64{ 0, 1, 5, 9 })[mine],
+        'C' => ([4]u64{ 0, 7, 2, 6 })[mine],
         else => 0,
     });
 }
 
 fn scoreStrategy(opponent: u8, player: u8) u64 {
     const mine = player - 'W';
-    return @intCast(u64, switch(opponent){
-        'A' => ([4]u64{0, 3, 4, 8})[mine],
-        'B' => ([4]u64{0, 1, 5, 9})[mine],
-        'C' => ([4]u64{0, 2, 6, 7})[mine],
+    return @intCast(u64, switch (opponent) {
+        'A' => ([4]u64{ 0, 3, 4, 8 })[mine],
+        'B' => ([4]u64{ 0, 1, 5, 9 })[mine],
+        'C' => ([4]u64{ 0, 2, 6, 7 })[mine],
         else => 0,
     });
 }
@@ -107,8 +107,6 @@ test "both scissors draw" {
     const score = scoreGame('C', 'Z');
     try std.testing.expectEqual(@intCast(u64, 6), score);
 }
-
-
 
 test "part 1 test" {
     const total = try totalGames("sample/day_02.txt");

@@ -18,7 +18,7 @@ pub fn build(b: *std.build.Builder) void {
 
 fn setup_day(b: *std.build.Builder, target: std.zig.CrossTarget, mode: std.builtin.Mode, comptime dir: []const u8, comptime day: []const u8) void {
     const source = "src/" ++ dir ++ "/day_" ++ day ++ ".zig";
-    
+
     const exe = b.addExecutable("Advent2022_day_" ++ day, source);
     exe.setTarget(target);
     exe.setBuildMode(mode);

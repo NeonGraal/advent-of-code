@@ -1,5 +1,6 @@
 #fmt: off
 import sys
+import traceback
 sys.path.append(".")
 
 from advent import Advent
@@ -19,6 +20,6 @@ try:
     day.test2(None)
     day.pass2()
 except:
-    (_, ex, tb) = sys.exc_info()
+    ex = sys.exc_info()
     print(day)
-    print(f"EXCEPTION: {ex} {tb}")
+    traceback.print_exception(*ex)

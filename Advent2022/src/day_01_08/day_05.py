@@ -1,6 +1,10 @@
+#fmt: off
 import sys
 sys.path.append(".")
+
 from advent import Advent
+#fmt: on
+
 
 class Day(Advent):
     day = "05"
@@ -33,7 +37,7 @@ class Day(Advent):
             if self.stacks[frm] > "":
                 self.stacks[to] = self.stacks[frm][0] + self.stacks[to]
                 self.stacks[frm] = self.stacks[frm][1:]
-                
+
     def result1(self):
         return "".join([s[:1] for s in self.stacks])
 
@@ -41,7 +45,8 @@ class Day(Advent):
         (cnt, frm, to) = params
         self.stacks[to] = self.stacks[frm][:cnt] + self.stacks[to]
         self.stacks[frm] = self.stacks[frm][cnt:]
-    
+
+
 day = Day()
 
 day.test1("CMZ")

@@ -1,9 +1,14 @@
+#fmt: off
 import sys
 sys.path.append(".")
+
 from advent import Advent
+#fmt: on
+
 
 class Day(Advent):
     day = "!!"
+
 
 day = Day()
 

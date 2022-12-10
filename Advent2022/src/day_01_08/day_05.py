@@ -1,47 +1,51 @@
-stacks = [""] * 9
+import sys
+sys.path.append(".")
+from advent import Advent
 
-def parseStacks(f):
-    while (line := f.readline())[1] != "1":
-        crates = line[1::4]
-        for i, c in enumerate(crates):
-            if c > " ":
-                stacks[i] += c
+class Day(Advent):
+    day = "05"
+    stacks = [""] * 9
 
-def printStacks():            
-    for i, s in enumerate(stacks):
-        if s > "":  print(f"{i}: {s}")
+    def parseState(self, f):
+        self.stacks = [""] * 9
+        while (line := f.readline())[1] != "1":
+            crates = line[1::4]
+            for i, c in enumerate(crates):
+                if c > " ":
+                    self.stacks[i] += c
 
-def parseMove(line):
-    parts = line.split()
-    if len(parts) < 1 or parts[0] != "move":
-        return (0, 0, 0)
-    (cnt, frm, to) = [int(p) for p in parts[1::2]]
-    frm -= 1
-    to -= 1
+    def __str__(self):
+        return "\n".join([f"{i}: {s}" for i, s in enumerate(self.stacks) if s > ""])
+
+    def parseCommand(self, command):
+        parts = command.split()
+        if len(parts) < 1 or parts[0] != "move":
+            return (0, 0, 0)
+        (cnt, frm, to) = [int(p) for p in parts[1::2]]
+        frm -= 1
+        to -= 1
+
+        return (cnt, frm, to)
+
+    def process1(self, params):
+        (cnt, frm, to) = params
+        for i in range(cnt):
+            if self.stacks[frm] > "":
+                self.stacks[to] = self.stacks[frm][0] + self.stacks[to]
+                self.stacks[frm] = self.stacks[frm][1:]
+                
+    def result1(self):
+        return "".join([s[:1] for s in self.stacks])
+
+    def process2(self, params):
+        (cnt, frm, to) = params
+        self.stacks[to] = self.stacks[frm][:cnt] + self.stacks[to]
+        self.stacks[frm] = self.stacks[frm][cnt:]
     
-    return (cnt, frm, to)
+day = Day()
 
-def processMove1(cnt, frm, to):
-    for i in range(cnt):
-        if stacks[frm] > "":
-            stacks[to] = stacks[frm][0] + stacks[to]
-            stacks[frm] = stacks[frm][1:]
+day.test1("CMZ")
+day.pass1()
 
-def processMove2(cnt, frm, to):
-    stacks[to] = stacks[frm][:cnt] + stacks[to]
-    stacks[frm] = stacks[frm][cnt:]
-
-
-with open("Advent2022/input/day_05.txt", "r", encoding="utf-8") as f:
-    parseStacks(f)
-    # printStacks()
-                    
-    for line in f:
-        (cnt, frm, to) = parseMove(line)
-        processMove2(cnt, frm, to)
-
-    # printStacks()
-    
-for s in stacks:
-    print(s[:1], end='')
-print()
+day.test2("MCD")
+day.pass2()

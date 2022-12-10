@@ -50,11 +50,11 @@ class Advent:
                 self.process1(command)
 
         result = self.result1()
-        assert result == expected, f"{result} != {expected}"
+        assert result == expected, f"Test 1: {result} != {expected}"
         print(f"Test 1: {expected}")
 
-    def test2(self, expected):
-        with open(f"sample/day_{self.day}.txt", "r", encoding="utf-8") as f:
+    def test2(self, expected, suffix = ""):
+        with open(f"sample/day_{self.day}{suffix}.txt", "r", encoding="utf-8") as f:
             self.parseState(f)
 
             for line in f:
@@ -62,5 +62,5 @@ class Advent:
                 self.process2(command)
 
         result = self.result2()
-        assert result == expected, f"{result} != {expected}"
-        print(f"Test 2: {expected}")
+        assert result == expected, f"Test 2{suffix}: {result} != {expected}"
+        print(f"Test 2{suffix}: {expected}")

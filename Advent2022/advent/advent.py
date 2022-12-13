@@ -24,7 +24,7 @@ class Advent:
             self.parseState(f)
 
             for line in f:
-                command = self.parseCommand(line)
+                command = self.parseCommand(line.rstrip())
                 self.process1(command)
 
         result = self.result1()
@@ -35,7 +35,7 @@ class Advent:
             self.parseState(f)
 
             for line in f:
-                command = self.parseCommand(line)
+                command = self.parseCommand(line.rstrip())
                 self.process2(command)
 
         result = self.result2()
@@ -46,7 +46,7 @@ class Advent:
             self.parseState(f)
 
             for line in f:
-                command = self.parseCommand(line)
+                command = self.parseCommand(line.rstrip())
                 self.process1(command)
 
         result = self.result1()
@@ -58,7 +58,7 @@ class Advent:
             self.parseState(f)
 
             for line in f:
-                command = self.parseCommand(line)
+                command = self.parseCommand(line.rstrip())
                 self.process2(command)
 
         result = self.result2()

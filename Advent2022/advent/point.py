@@ -1,4 +1,10 @@
 class Point:
+    def parse(str):
+        parts = str.split(",")
+        if len(parts) != 2:
+            raise ValueError("Point can only be created from two numbers: " + str)
+        return Point(int(parts[0]), int(parts[1]))
+        
     def __init__(self, x, y):
         self.x = x
         self.y = y

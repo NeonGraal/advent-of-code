@@ -22,6 +22,12 @@ class Point:
         self.x += other.x
         self.y += other.y
         return self
+    
+    def __sub__(self, other):
+        return Point(self.x - other.x, self.y - other.y)
+    
+    def __len__(self):
+        return abs(self.x) + abs(self.y)
 
     def __irshift__(self, other):
         (dx, dy) = (other.x - self.x, other.y - self.y)

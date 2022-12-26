@@ -27,7 +27,7 @@ class State1:
         self.released = released
         self.open = open
 
-    def tick(self, valves):
+    def tick(self, valves, max):
         if self.time >= 30:
             return
 
@@ -37,7 +37,8 @@ class State1:
         open = dict(self.open)
         open[curr.id] = time
 
-        yield State1(30, curr, released, open)
+        if released > max:
+            yield State1(30, curr, released, open)
 
         paths = [v for v in curr.valves if v not in open]
         for p in paths:
@@ -48,34 +49,47 @@ class State1:
     def __str__(self) -> str:
         return f"#{self.time} @{self.current.id} ~{self.released} - {self.open}"
 
+    def sort(self):
+        return self.time - self.released
+
+
 class State2:
-    def __init__(self, time: int, opening: Valve, other: Valve, released: int, open: dict, flow_open: int):
+    def __init__(self, time: int, opening: Valve, other_time: int, other: Valve, released: int, open: dict):
         self.time = time
+        self.opening = opening
+        self.other_time = other_time
+        self.other = other
         self.released = released
         self.open = open
-        self.flow_open = flow_open
 
-    def tick(self, valves, max_open):
-        if self.time >= 30 or self.flow_open == max_open:
+    def sort(self):
+        return self.time - self.other_time - self.released
+
+    def tick(self, valves, max):
+        if self.time >= 26:
             return
 
-        curr = self.current
+        curr = self.opening
         time = self.time + 1
-        flow_open = self.flow_open + curr.flow
-        released = self.released + (30 - time) * curr.flow
-        open = dict(self.open)
-        open[curr.id] = time
+        released = self.released + (26 - time) * curr.flow
 
-        yield State1(30, curr, released, open, flow_open)
+        if self.other_time < 26 or released > max:
+            yield State2(self.other_time, self.other, 26, curr, released, self.open)
 
-        paths = [v for v in curr.valves if v not in open]
+        paths = [v for v in curr.valves if v not in self.open]
         for p in paths:
             time = self.time + curr.valves[p] + 1
-            if time <= 30:
-                yield State1(time, valves[p], released, open, flow_open)
+            if time > 26:
+                continue
+            open = dict(self.open)
+            open[p] = time
+            if time < self.other_time:
+                yield State2(time, valves[p], self.other_time, self.other, released, open)
+            else:
+                yield State2(self.other_time, self.other, time, valves[p], released, open)
 
     def __str__(self) -> str:
-        return f"#{self.time} @{self.current.id} ~{self.released} - {self.open} / {self.flow_open}"
+        return f"#{self.time} @{self.opening.id} (#{self.other_time} @{self.other.id}) ~{self.released} - {self.open}"
 
 
 class Day(Advent):
@@ -111,8 +125,8 @@ class Day(Advent):
 
         self.valves[v.id] = v
 
-    def __str__(self) -> str:
-        return "\n".join((f"{v}" for v in self.valves.values()))
+    # def __str__(self) -> str:
+        # return "\n".join((f"{v}" for v in self.valves.values()))
 
     def finish_valves(self):
         needed = []
@@ -144,7 +158,7 @@ class Day(Advent):
         for v in start.valves:
             time = start.valves[v]
             states.append(State1(time, self.valves[v], 0, {v: time}))
-        states.sort(key=state_sort)
+        states.sort(key=State1.sort)
 
         max = states[0]
         i = 0
@@ -156,20 +170,62 @@ class Day(Advent):
                 print(f"@{i} Best {max.released} Remaining {len(states)}")
             if curr.released > max.released:
                 max = curr
-            states += [s for s in curr.tick(self.valves)]
-            states.sort(key=state_sort)
+                states = [s for s in states if s.time <
+                          30 or s.released > max.released]
+            states += [s for s in curr.tick(self.valves, max.released)]
+            states.sort(key=State1.sort)
 
         print(max)
         return max.released
-    
+
+    def test_step(self, state: State2) -> list[State2]:
+        print(state)
+        print("--")
+        states = [s for s in state.tick(self.valves)]
+        states.sort(key=State2.sort)
+        print("\n".join((str(s) for s in states)))
+        print("--")
+        return states
+
     def result2(self):
         self.finish_valves()
-        
-        
 
+        states = []
+        start = self.valves["AA"]
+        for v1 in start.valves:
+            time = start.valves[v1]
+            for v2 in start.valves:
+                other_time = start.valves[v2]
+                if v1 == v2 or other_time < time:
+                    continue
+                states.append(State2(time, self.valves[v1], other_time, self.valves[v2], 0, {
+                              v1: time, v2: other_time}))
+        states.sort(key=State2.sort)
 
-def state_sort(state: State1):
-    return state.time - state.released
+        # first = State2(start.valves["DD"], self.valves["DD"], start.valves["JJ"], self.valves["JJ"], 0, {
+        #                "DD": start.valves["DD"], "JJ": start.valves["JJ"]})
+
+        # next = self.test_step(first).pop(1)
+        # self.test_step(next)
+        # return
+
+        max = states[0]
+        i = 0
+
+        while len(states) > 0:
+            curr = states.pop(0)
+            i += 1
+            if not i % 1000000:
+                print(f"@{i} Best {max.released} Remaining {len(states)} Current {curr}")
+            if curr.released > max.released:
+                max = curr
+                states = [s for s in states if s.time <
+                          26 or s.other_time < 26 or s.released > max.released]
+            states += [s for s in curr.tick(self.valves, max.released)]
+            states.sort(key=State2.sort)
+
+        print(max)
+        return max.released
 
 
 day = Day()

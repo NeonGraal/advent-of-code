@@ -8,7 +8,7 @@ from advent import Advent
 
 
 class Day(Advent):
-    day = "!!"
+    day = "23"
 
 
 day = Day()

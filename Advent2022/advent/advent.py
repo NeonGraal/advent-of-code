@@ -14,7 +14,7 @@ class Advent:
         return None
     
     def process2(self, command):
-        pass
+        self.process1(command)
     
     def result2(self):
         return self.result1()

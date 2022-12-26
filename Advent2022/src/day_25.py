@@ -14,7 +14,7 @@ class Day(Advent):
 day = Day()
 
 try:
-    day.test1(None)
+    day.test1("2=-1=0")
     day.pass1()
 
     day.test2(None)
